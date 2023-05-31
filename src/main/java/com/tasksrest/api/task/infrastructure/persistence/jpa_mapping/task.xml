@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <package>com.tasksrest.api.task.infrastructure.persistence.jpa_mapping</package>
+
+    <entity class="com.tasksrest.api.task.domain.Task">
+        <table name="tasks"/>
+
+        <attributes>
+            <id name="id">
+                <column name="id" column-definition="int(11)"/>
+                <generated-value strategy="IDENTITY"/>
+            </id>
+
+            <basic name="name">
+                <column name="name" column-definition="varchar(100) unique"/>
+            </basic>
+
+            <basic name="description">
+                <column name="description" column-definition="varchar(250) NULL"/>
+            </basic>
+
+             <basic name="status">
+                <column name="status" column-definition="varchar(10)"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
