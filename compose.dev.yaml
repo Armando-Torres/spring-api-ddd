@@ -1,0 +1,31 @@
+services:
+  api: 
+    build: 
+      context: .
+      dockerfile: docker/Tomcat.custom.Dockerfile
+    ports: 
+      - 80:8080
+    volumes:
+      - ${PWD}/src/target/taskmanager.war:/usr/local/tomcat/webapps/taskmanager.war:ro
+    networks: 
+      - tasks_api
+  
+  db:
+    image: mariadb:10.9.2
+    ports:
+      - 3306:3306
+    environment:
+        MARIADB_ROOT_PASSWORD: m4_r14d8*
+        MARIADB_USER: api
+        MARIADB_PASSWORD: 4p1**
+        MARIADB_DATABASE: tasks_manager
+    volumes:
+      - "task_api:/var/lib/mysql"
+    networks: 
+      - tasks_api
+
+volumes:
+  task_api:
+
+networks:
+  tasks_api:
