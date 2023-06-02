@@ -1,6 +1,10 @@
 package com.tasksrest.api.task.infrastructure.rest;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,12 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import com.tasksrest.api.task.application.CreateTask;
 import com.tasksrest.api.task.application.CreateTaskRequest;
 import com.tasksrest.api.task.application.GetTask;
+import com.tasksrest.api.task.application.GetTasks;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
 
@@ -25,20 +30,29 @@ public class TaskSpringController {
 
     @PostMapping
     //public Task createSingleTask(@RequestBody String name, @RequestBody String description, @RequestBody String status){
-    public Task createSingleTask(@RequestBody CreateTaskRequest requestBody){
+    public ResponseEntity<Task> createSingleTask(@RequestBody CreateTaskRequest requestBody){
         CreateTask useCase = new CreateTask(this.repository);
         
         Task task = useCase.invoke(requestBody);
 
-        return task;
+        return ResponseEntity.status(HttpStatus.CREATED).body(task);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getTask(@PathVariable("id") Integer id) {
+    public ResponseEntity<Task> getTask(@PathVariable("id") Integer id) {
         GetTask useCase = new GetTask(this.repository);
+
         Task task = useCase.invoke(id);
 
         return ResponseEntity.ok(task);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Task>> getTasks(@RequestParam Map<String,String> requestFilters) {
+        GetTasks useCase = new GetTasks(this.repository);
+
+        List<Task> tasks = useCase.invoke(requestFilters);
         
+        return ResponseEntity.ok(tasks);
     }
 }
