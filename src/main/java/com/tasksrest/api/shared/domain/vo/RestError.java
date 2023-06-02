@@ -1,12 +1,11 @@
-package com.tasksrest.api.shared.domain;
+package com.tasksrest.api.shared.domain.vo;
 
-public class Error {
+public class RestError {
     private String cause;
-    private Boolean error;
+    private Boolean error = true;
 
-    public Error(String cause){
+    public RestError(String cause){
         this.cause = cause;
-        this.error = true;
     }
 
     public String getCause() {
