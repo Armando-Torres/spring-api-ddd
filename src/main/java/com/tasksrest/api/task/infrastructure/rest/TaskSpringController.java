@@ -25,4 +25,13 @@ public class TaskSpringController {
 
         return task;
     }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<?> getTask(@PathVariable("id") Integer id) {
+        GetTask useCase = new GetTask(this.repository);
+        Task task = useCase.invoke(id);
+
+        return ResponseEntity.ok(task);
+        
+    }
 }

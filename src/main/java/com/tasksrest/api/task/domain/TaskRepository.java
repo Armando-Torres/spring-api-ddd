@@ -7,5 +7,5 @@ public interface TaskRepository {
     
     List<Task> findAll();
 
-    Task findById(Task task);
+    Task findById(Integer id);
 }

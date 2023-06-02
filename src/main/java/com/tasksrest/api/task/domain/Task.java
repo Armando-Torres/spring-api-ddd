@@ -13,6 +13,10 @@ public final class Task {
 
     //private User user;
 
+    public Task() {
+        // Default constructor is required for JPA
+    }
+
     public Task(String name, String description, String status/*, User user*/) {
         this.name = name;
         this.description = description;
