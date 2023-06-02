@@ -13,8 +13,8 @@ public class CreateTask {
         this.repository = repository;
     }
 
-    public Task invoke(String name, String description, String status){
-        Task task = new Task(name, description, status.toUpperCase());
+    public Task invoke(CreateTaskRequest request){
+        Task task = new Task(request.getName(), request.getDesc(), request.getStatus().toUpperCase());
         Task persistTask = null;
 
         try {
