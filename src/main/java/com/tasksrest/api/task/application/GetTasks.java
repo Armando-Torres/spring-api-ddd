@@ -1,10 +1,10 @@
 package com.tasksrest.api.task.application;
 
 import java.util.List;
-import java.util.Map;
 
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
+import com.tasksrest.api.task.domain.vo.TasksFilters;
 
 public class GetTasks {
     private final TaskRepository repository;
@@ -13,9 +13,8 @@ public class GetTasks {
         this.repository = repository;
     }
 
-    public List<Task> invoke(Map<String,String> filters) { 
-        // TODO Filters mapping in repository method??
-        List<Task> tasks = this.repository.findAll();
+    public List<Task> invoke(TasksFilters filters) { 
+        List<Task> tasks = this.repository.findAllWithCriteria(filters);
         
         return tasks;
     }
