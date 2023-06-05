@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import com.tasksrest.api.task.application.CreateTask;
 import com.tasksrest.api.task.application.CreateTaskRequest;
 import com.tasksrest.api.task.application.GetTask;
 import com.tasksrest.api.task.application.GetTasks;
+import com.tasksrest.api.task.application.UpdateTask;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
 import com.tasksrest.api.task.domain.vo.Status;
@@ -32,13 +34,21 @@ public class TaskSpringController {
     private TaskRepository repository;
 
     @PostMapping
-    //public Task createSingleTask(@RequestBody String name, @RequestBody String description, @RequestBody String status){
     public ResponseEntity<Task> createSingleTask(@RequestBody CreateTaskRequest requestBody){
         CreateTask useCase = new CreateTask(this.repository);
         
         Task task = useCase.invoke(requestBody);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(task);
+    }
+
+    @PatchMapping(path = "/{id}")
+    public ResponseEntity<Task> editTasks(@PathVariable("id") Integer id, @RequestBody Task task) {
+        UpdateTask useCase = new UpdateTask(repository);
+
+        Task updateTask = useCase.invoke(id, task);
+        
+        return ResponseEntity.ok(updateTask);
     }
 
     @GetMapping(path = "/{id}")
