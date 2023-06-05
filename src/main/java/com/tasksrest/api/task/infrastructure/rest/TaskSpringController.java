@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tasksrest.api.shared.domain.vo.Pagination;
 import com.tasksrest.api.task.application.CreateTask;
 import com.tasksrest.api.task.application.CreateTaskRequest;
 import com.tasksrest.api.task.application.GetTask;
 import com.tasksrest.api.task.application.GetTasks;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
+import com.tasksrest.api.task.domain.vo.Status;
+import com.tasksrest.api.task.domain.vo.TasksFilters;
 
 @RestController
 @RequestMapping(value = "/v1/task", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,10 +51,14 @@ public class TaskSpringController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getTasks(@RequestParam Map<String,String> requestFilters) {
+    public ResponseEntity<List<Task>> getTasks(@RequestParam Map<String,String> filters) {
         GetTasks useCase = new GetTasks(this.repository);
 
-        List<Task> tasks = useCase.invoke(requestFilters);
+        Pagination pagination = new Pagination(Integer.parseInt(filters.get("offset")), Integer.parseInt(filters.get("limit")));
+        Status status = (filters.get("status") != null) ? new Status(filters.get("status")) : null;
+        TasksFilters taskFilters = new TasksFilters(filters.get("name"), filters.get("desc"), status, pagination);
+
+        List<Task> tasks = useCase.invoke(taskFilters);
         
         return ResponseEntity.ok(tasks);
     }
