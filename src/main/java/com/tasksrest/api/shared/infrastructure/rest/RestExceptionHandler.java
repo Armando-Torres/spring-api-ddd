@@ -10,6 +10,7 @@ import com.tasksrest.api.shared.domain.vo.RestError;
 import com.tasksrest.api.task.domain.exception.DuplicateTaskException;
 import com.tasksrest.api.task.domain.exception.InvalidStatusException;
 import com.tasksrest.api.task.domain.exception.NotFoundTaskException;
+import com.tasksrest.api.task.domain.exception.UpdateEmptyException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
         return this.resposeException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
     }
+
+    @ExceptionHandler({UpdateEmptyException.class})
+    protected ResponseEntity<Object> handleUpdateEmptyException(UpdateEmptyException e) {
+        this.logException(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage());
+
+        return this.resposeException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+    }
+    
 
     private void logException(Integer code, String cause) {
         this.logger.warn(String.format("%d %s", code, cause));
