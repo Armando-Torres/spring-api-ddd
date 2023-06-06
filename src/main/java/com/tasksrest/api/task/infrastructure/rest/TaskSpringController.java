@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tasksrest.api.shared.domain.vo.Pagination;
 import com.tasksrest.api.task.application.CreateTask;
-import com.tasksrest.api.task.application.CreateTaskRequest;
 import com.tasksrest.api.task.application.GetTask;
 import com.tasksrest.api.task.application.GetTasks;
 import com.tasksrest.api.task.application.UpdateTask;
+import com.tasksrest.api.task.application.requests.CreateTaskRequest;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
 import com.tasksrest.api.task.domain.vo.Status;
