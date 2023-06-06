@@ -2,6 +2,7 @@ package com.tasksrest.api.task.application;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.tasksrest.api.task.application.requests.CreateTaskRequest;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
 import com.tasksrest.api.task.domain.exception.DuplicateTaskException;
@@ -14,7 +15,7 @@ public class CreateTask {
     }
 
     public Task invoke(CreateTaskRequest request){
-        Task task = new Task(request.getName(), request.getDesc(), request.getStatus().toUpperCase());
+        Task task = new Task(request.getName(), request.getDesc(), request.getStatus());
         Task persistTask = null;
 
         try {

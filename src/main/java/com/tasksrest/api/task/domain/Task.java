@@ -20,7 +20,7 @@ public final class Task {
     public Task(String name, String description, String status/*, User user*/) {
         this.name = name;
         this.description = description;
-        this.status = new Status(status);
+        this.status = new Status(status.toUpperCase());
         //this.user = user;
     }
 
@@ -53,6 +53,6 @@ public final class Task {
     }
 
     public String getStatus() {
-        return this.status.getValue();
+        return (this.status != null) ? this.status.getValue() : null;
     }
 }
