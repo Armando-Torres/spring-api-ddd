@@ -15,15 +15,15 @@
             </id>
 
             <basic name="name">
-                <column name="name" column-definition="varchar(100) unique"/>
+                <column name="name" column-definition="varchar(100)" unique="true" nullable="false"/>
             </basic>
 
             <basic name="description">
-                <column name="description" column-definition="varchar(250) NULL"/>
+                <column name="description" column-definition="varchar(250)" nullable="true"/>
             </basic>
 
              <basic name="status">
-                <column name="status" column-definition="varchar(10)"/>
+                <column name="status" column-definition="varchar(10)" nullable="false"/>
             </basic>
         </attributes>
     </entity>
