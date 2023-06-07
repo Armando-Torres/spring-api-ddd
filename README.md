@@ -11,7 +11,7 @@ Only for the first time you must run the next command:
 docker compose -f compose.dev.yaml up -d
 ```
 
-It rise up a tomcat in port 8080 and database exposed into 3306, both available in localhost.
+It rise up a tomcat in port 80 and database exposed into 3306, both available in localhost.
 
 ## Start / Stop
 
@@ -44,7 +44,7 @@ docker compose -d compose.dev.yaml logs -f db
 Use admin for user and same for password.
 
 #### Auto apps deployment
-You can deploy new wars using the tomcat manager. It is exposed into 8080 under the path: /manager/html. Or click on the next link [access to tomcat manager](http://localhost:8080/manager/html)
+You can deploy new wars using the tomcat manager. It is exposed into 80 under the path: /manager/html. Or click on the next link [access to tomcat manager](http://localhost:80/manager/html)
 
 #### Manual apps deployment
 Other way is copy your .war into webapps dir to deploy by yourself. The complete path is: /usr/local/tomcat/webapps
