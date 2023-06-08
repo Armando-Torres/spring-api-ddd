@@ -6,7 +6,7 @@ services:
     ports: 
       - 80:8080
     volumes:
-      - ${PWD}/src/target/taskmanager.war:/usr/local/tomcat/webapps/taskmanager.war:ro
+      - ${PWD}/target/taskmanager.war:/usr/local/tomcat/webapps/taskmanager.war:ro
     networks: 
       - tasks_api
   
