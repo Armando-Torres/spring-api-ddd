@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <package>com.tasksrest.api.kanban.infrastructure.persistence.jpa_mapping</package>
+
+    <entity class="com.tasksrest.api.kanban.domain.Column">
+        <table name="kanban_board_columns"/>
+
+        <attributes>
+            <id name="id">
+                <column name="id" column-definition="int(11)"/>
+                <generated-value strategy="IDENTITY"/>
+            </id>
+
+            <basic name="name">
+                <column name="name" column-definition="varchar(100)" unique="true" nullable="false"/>
+            </basic>
+
+            <basic name="order">
+                <column name="description" column-definition="int(2)" nullable="true"/>
+            </basic>
+
+             <basic name="wip">
+                <column name="status" column-definition="int(8)" nullable="false"/>
+            </basic>
+
+            <many-to-one name="kanban" />
+        </attributes>
+    </entity>
+</entity-mappings>
