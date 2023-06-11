@@ -5,10 +5,10 @@ import com.tasksrest.api.shared.domain.vo.Pagination;
 public class TasksFilters {
     private String name;
     private String desc;
-    private Status status;
+    private TaskStatus status;
     private Pagination pagination;
 
-    public TasksFilters(String name, String desc, Status status, Pagination pagination) {
+    public TasksFilters(String name, String desc, TaskStatus status, Pagination pagination) {
         this.name = name;
         this.desc = desc;
         this.status = status;
@@ -23,7 +23,7 @@ public class TasksFilters {
         return this.desc;
     }
 
-    public Status getStatus() {
+    public TaskStatus getStatus() {
         return this.status;
     }
 

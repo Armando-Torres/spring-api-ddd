@@ -2,7 +2,7 @@ package com.tasksrest.api.task.domain.vo;
 
 import com.tasksrest.api.task.domain.exception.InvalidStatusException;
 
-public class Status {
+public class TaskStatus {
     public enum STATUS {
         OPEN,
         ASSIGNED,
@@ -13,7 +13,7 @@ public class Status {
 
     private String status;
 
-    public Status(String status) {
+    public TaskStatus(String status) {
         this.validateStatus(status);
 
         this.status = STATUS.valueOf(status).toString();

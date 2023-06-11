@@ -22,9 +22,11 @@
                 <column name="description" column-definition="varchar(250)" nullable="true"/>
             </basic>
 
-             <basic name="status">
+            <basic name="status">
                 <column name="status" column-definition="varchar(10)" nullable="false"/>
             </basic>
+
+            <many-to-one name="kanbanColumn" />
         </attributes>
     </entity>
 </entity-mappings>
