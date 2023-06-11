@@ -7,7 +7,7 @@ public class Kanban {
 
     private String name;
 
-    private Collection<Column> columns;
+    private Collection<KanbanColumn> columns;
 
     public Kanban() {
 
@@ -17,7 +17,7 @@ public class Kanban {
         this.name = name;
     }
 
-    public Kanban(String name, Collection<Column> columns) {
+    public Kanban(String name, Collection<KanbanColumn> columns) {
         this.name = name;
         this.columns = columns;
     }
@@ -38,11 +38,11 @@ public class Kanban {
         this.name = name;
     }
 
-    public Collection<Column> getColumns() {
+    public Collection<KanbanColumn> getColumns() {
         return this.columns;
     }
 
-    public void setColumns(Collection<Column> columns) {
+    public void setColumns(Collection<KanbanColumn> columns) {
         this.columns = columns;
     }
 }
