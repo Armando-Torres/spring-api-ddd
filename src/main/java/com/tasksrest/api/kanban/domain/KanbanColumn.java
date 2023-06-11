@@ -1,6 +1,8 @@
 package com.tasksrest.api.kanban.domain;
 
-public class Column {
+import com.tasksrest.api.shared.domain.TaskContainer;
+
+public class KanbanColumn extends TaskContainer{
     private Integer id;
 
     private Integer order;
@@ -11,11 +13,11 @@ public class Column {
 
     private Kanban kanban;
 
-    public Column() {
+    public KanbanColumn() {
 
     }
 
-    public Column(Integer order, String name, Integer wip, Kanban kanban) {
+    public KanbanColumn(Integer order, String name, Integer wip, Kanban kanban) {
         this.order = order;
         this.name = name;
         this.wip = wip;
