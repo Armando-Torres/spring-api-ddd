@@ -1,6 +1,7 @@
 package com.tasksrest.api.task.domain;
 
-import com.tasksrest.api.task.domain.vo.Status;
+import com.tasksrest.api.kanban.domain.KanbanColumn;
+import com.tasksrest.api.task.domain.vo.TaskStatus;
 
 public final class Task {
     private Integer id;
@@ -9,7 +10,9 @@ public final class Task {
 
     private String description;
 
-    private Status status;
+    private TaskStatus status;
+
+    private KanbanColumn kanbanColumn;
 
     //private User user;
 
@@ -20,7 +23,7 @@ public final class Task {
     public Task(String name, String description, String status/*, User user*/) {
         this.name = name;
         this.description = description;
-        this.status = new Status(status.toUpperCase());
+        this.status = new TaskStatus(status.toUpperCase());
         //this.user = user;
     }
 
@@ -49,10 +52,19 @@ public final class Task {
     }
 
     public void setStatus(String status) {
-        this.status = new Status(status);
+        this.status = new TaskStatus(status);
     }
 
     public String getStatus() {
         return (this.status != null) ? this.status.getValue() : null;
     }
+
+    public void setKanbanColumn(KanbanColumn kanbanColumn) {
+        this.kanbanColumn = kanbanColumn;
+    }
+
+    public KanbanColumn getKanbanColumn(){
+        return this.kanbanColumn;
+    }
+    
 }

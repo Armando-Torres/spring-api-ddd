@@ -24,7 +24,7 @@ import com.tasksrest.api.task.application.UpdateTask;
 import com.tasksrest.api.task.application.requests.CreateTaskRequest;
 import com.tasksrest.api.task.domain.Task;
 import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.vo.Status;
+import com.tasksrest.api.task.domain.vo.TaskStatus;
 import com.tasksrest.api.task.domain.vo.TasksFilters;
 
 @RestController
@@ -65,7 +65,7 @@ public class TaskSpringController {
         GetTasks useCase = new GetTasks(this.repository);
 
         Pagination pagination = new Pagination(Integer.parseInt(filters.get("offset")), Integer.parseInt(filters.get("limit")));
-        Status status = (filters.get("status") != null) ? new Status(filters.get("status")) : null;
+        TaskStatus status = (filters.get("status") != null) ? new TaskStatus(filters.get("status")) : null;
         TasksFilters taskFilters = new TasksFilters(filters.get("name"), filters.get("desc"), status, pagination);
 
         List<Task> tasks = useCase.invoke(taskFilters);
