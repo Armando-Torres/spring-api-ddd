@@ -5,7 +5,7 @@
                  version="2.2">
     <package>com.tasksrest.api.kanban.infrastructure.persistence.jpa_mapping</package>
 
-    <entity class="com.tasksrest.api.kanban.domain.Column">
+    <entity class="com.tasksrest.api.kanban.domain.KanbanColumn">
         <table name="kanban_board_columns"/>
 
         <attributes>
@@ -27,6 +27,8 @@
             </basic>
 
             <many-to-one name="kanban" />
+
+            <one-to-many name="tasks" mapped-by="kanbanColumn" />
         </attributes>
     </entity>
 </entity-mappings>
