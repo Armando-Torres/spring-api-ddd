@@ -20,6 +20,8 @@ spring:
       ddl-auto: update
     mapping-resources:
      - classpath:com/tasksrest/api/task/infrastructure/persistence/jpa_mapping/task.xml
+     - classpath:com/tasksrest/api/kanban/infrastructure/persistence/jpa_mapping/kanban_columns.xml
+     - classpath:com/tasksrest/api/kanban/infrastructure/persistence/jpa_mapping/kanban.xml
 
   security:
     oauth2:
