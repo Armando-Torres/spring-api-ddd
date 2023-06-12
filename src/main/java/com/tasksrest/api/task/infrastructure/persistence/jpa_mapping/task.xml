@@ -25,8 +25,8 @@
             <basic name="status">
                 <column name="status" column-definition="varchar(10)" nullable="false"/>
             </basic>
-
-            <many-to-one name="kanbanColumn" />
+            
+            <many-to-one name="taskContainer" />
         </attributes>
     </entity>
 </entity-mappings>
