@@ -7,28 +7,14 @@
 
     <entity class="com.tasksrest.api.kanban.domain.KanbanColumn">
         <table name="kanban_board_columns"/>
+        <discriminator-value>B</discriminator-value>
 
         <attributes>
-            <id name="id">
-                <column name="id" column-definition="int(11)"/>
-                <generated-value strategy="IDENTITY"/>
-            </id>
-
-            <basic name="name">
-                <column name="name" column-definition="varchar(100)" unique="true" nullable="false"/>
-            </basic>
-
-            <basic name="order">
-                <column name="description" column-definition="int(2)" nullable="true"/>
-            </basic>
-
-             <basic name="wip">
-                <column name="status" column-definition="int(8)" nullable="false"/>
+            <basic name="wip">
+                <column name="wip" column-definition="int(2)" nullable="false"/>
             </basic>
 
             <many-to-one name="kanban" />
-
-            <one-to-many name="tasks" mapped-by="kanbanColumn" />
         </attributes>
     </entity>
 </entity-mappings>
