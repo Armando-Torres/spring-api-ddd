@@ -1,4 +1,4 @@
-package com.tasksrest.api.task.domain.exception;
+package com.tasksrest.api.shared.domain.exception;
 
 public class UpdateEmptyException extends RuntimeException{
     

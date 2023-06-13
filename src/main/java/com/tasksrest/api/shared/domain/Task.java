@@ -1,7 +1,6 @@
-package com.tasksrest.api.task.domain;
+package com.tasksrest.api.shared.domain;
 
-import com.tasksrest.api.shared.domain.TaskContainer;
-import com.tasksrest.api.task.domain.vo.TaskStatus;
+import com.tasksrest.api.shared.domain.vo.TaskStatus;
 
 public final class Task {
     private Integer id;
