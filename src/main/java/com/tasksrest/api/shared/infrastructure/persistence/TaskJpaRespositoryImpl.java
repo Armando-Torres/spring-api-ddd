@@ -1,4 +1,4 @@
-package com.tasksrest.api.task.infrastructure.persistence;
+package com.tasksrest.api.shared.infrastructure.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tasksrest.api.task.domain.Task;
-import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.exception.NotFoundTaskException;
-import com.tasksrest.api.task.domain.vo.TasksFilters;
+import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskRepository;
+import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
+import com.tasksrest.api.shared.domain.vo.TasksFilters;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;

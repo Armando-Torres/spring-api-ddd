@@ -2,8 +2,6 @@ package com.tasksrest.api.shared.domain;
 
 import java.util.Collection;
 
-import com.tasksrest.api.task.domain.Task;
-
 public abstract class TaskContainer {
     private Integer id;
 

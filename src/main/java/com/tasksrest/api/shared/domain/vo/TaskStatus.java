@@ -1,6 +1,6 @@
-package com.tasksrest.api.task.domain.vo;
+package com.tasksrest.api.shared.domain.vo;
 
-import com.tasksrest.api.task.domain.exception.InvalidStatusException;
+import com.tasksrest.api.shared.domain.exception.InvalidStatusException;
 
 public class TaskStatus {
     public enum STATUS {
