@@ -1,6 +1,4 @@
-package com.tasksrest.api.task.domain.vo;
-
-import com.tasksrest.api.shared.domain.vo.Pagination;
+package com.tasksrest.api.shared.domain.vo;
 
 public class TasksFilters {
     private String name;

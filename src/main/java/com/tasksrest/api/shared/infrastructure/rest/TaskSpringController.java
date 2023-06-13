@@ -1,4 +1,4 @@
-package com.tasksrest.api.task.infrastructure.rest;
+package com.tasksrest.api.shared.infrastructure.rest;
 
 import java.util.List;
 import java.util.Map;
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tasksrest.api.shared.application.CreateTask;
+import com.tasksrest.api.shared.application.GetTask;
+import com.tasksrest.api.shared.application.GetTasks;
+import com.tasksrest.api.shared.application.UpdateTask;
+import com.tasksrest.api.shared.application.requests.CreateTaskRequest;
+import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.vo.Pagination;
-import com.tasksrest.api.task.application.CreateTask;
-import com.tasksrest.api.task.application.GetTask;
-import com.tasksrest.api.task.application.GetTasks;
-import com.tasksrest.api.task.application.UpdateTask;
-import com.tasksrest.api.task.application.requests.CreateTaskRequest;
-import com.tasksrest.api.task.domain.Task;
-import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.vo.TaskStatus;
-import com.tasksrest.api.task.domain.vo.TasksFilters;
+import com.tasksrest.api.shared.domain.vo.TaskStatus;
+import com.tasksrest.api.shared.domain.vo.TasksFilters;
 
 @RestController
 @RequestMapping(value = "/v1/task", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,4 +1,4 @@
-package com.tasksrest.api.task.application.requests;
+package com.tasksrest.api.shared.application.requests;
 
 public class CreateTaskRequest {
     private String name;

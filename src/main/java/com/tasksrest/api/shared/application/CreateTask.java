@@ -1,11 +1,11 @@
-package com.tasksrest.api.task.application;
+package com.tasksrest.api.shared.application;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.tasksrest.api.task.application.requests.CreateTaskRequest;
-import com.tasksrest.api.task.domain.Task;
-import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.exception.DuplicateTaskException;
+import com.tasksrest.api.shared.application.requests.CreateTaskRequest;
+import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskRepository;
+import com.tasksrest.api.shared.domain.exception.DuplicateTaskException;
 
 public class CreateTask {
     private final TaskRepository repository;

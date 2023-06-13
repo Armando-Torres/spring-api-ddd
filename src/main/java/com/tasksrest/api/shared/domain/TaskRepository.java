@@ -1,8 +1,8 @@
-package com.tasksrest.api.task.domain;
+package com.tasksrest.api.shared.domain;
 
 import java.util.List;
 
-import com.tasksrest.api.task.domain.vo.TasksFilters;
+import com.tasksrest.api.shared.domain.vo.TasksFilters;
 
 public interface TaskRepository {
     Task save(Task task);

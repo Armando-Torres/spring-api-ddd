@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.tasksrest.api.shared.domain.exception.DuplicateTaskException;
+import com.tasksrest.api.shared.domain.exception.InvalidStatusException;
+import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
+import com.tasksrest.api.shared.domain.exception.UpdateEmptyException;
 import com.tasksrest.api.shared.domain.vo.RestError;
-import com.tasksrest.api.task.domain.exception.DuplicateTaskException;
-import com.tasksrest.api.task.domain.exception.InvalidStatusException;
-import com.tasksrest.api.task.domain.exception.NotFoundTaskException;
-import com.tasksrest.api.task.domain.exception.UpdateEmptyException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

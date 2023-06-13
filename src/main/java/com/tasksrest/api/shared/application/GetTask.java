@@ -1,8 +1,8 @@
-package com.tasksrest.api.task.application;
+package com.tasksrest.api.shared.application;
 
-import com.tasksrest.api.task.domain.Task;
-import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.exception.NotFoundTaskException;
+import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskRepository;
+import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
 
 public class GetTask {
     private final TaskRepository repository;

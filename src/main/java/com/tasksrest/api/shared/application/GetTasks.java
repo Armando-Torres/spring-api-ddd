@@ -1,10 +1,10 @@
-package com.tasksrest.api.task.application;
+package com.tasksrest.api.shared.application;
 
 import java.util.List;
 
-import com.tasksrest.api.task.domain.Task;
-import com.tasksrest.api.task.domain.TaskRepository;
-import com.tasksrest.api.task.domain.vo.TasksFilters;
+import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskRepository;
+import com.tasksrest.api.shared.domain.vo.TasksFilters;
 
 public class GetTasks {
     private final TaskRepository repository;

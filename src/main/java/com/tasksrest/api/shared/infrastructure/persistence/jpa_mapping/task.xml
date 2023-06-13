@@ -3,9 +3,9 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
                  version="2.2">
-    <package>com.tasksrest.api.task.infrastructure.persistence.jpa_mapping</package>
+    <package>com.tasksrest.api.shared.infrastructure.persistence.jpa_mapping</package>
 
-    <entity class="com.tasksrest.api.task.domain.Task">
+    <entity class="com.tasksrest.api.shared.domain.Task">
         <table name="tasks"/>
 
         <attributes>
