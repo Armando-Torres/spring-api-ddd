@@ -10,7 +10,7 @@ import com.tasksrest.api.kanban.application.service.KanbanResponse;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.Kanban;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
-import com.tasksrest.api.shared.domain.exception.DuplicateTaskException;
+import com.tasksrest.api.kanban.domain.exception.DuplicateKanbanException;
 
 public class CreateKanban {
     private final KanbanRepository kanbanRepository;
@@ -34,13 +34,13 @@ public class CreateKanban {
             if (request.getColumns().size() > 0) {
                 AddColumn addColumnUseCase = new AddColumn(this.columnRepository, this.kanbanRepository);
             
-                List<ColumnResponse> kanbanColumns = addColumnUseCase.invoke(persistKanban.getId(), request.getColumns());
+                List<ColumnResponse> kanbanColumns = addColumnUseCase.invoke(persistKanban, request.getColumns());
 
                 response.setColumns(kanbanColumns);
             }
 
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateTaskException(String.format("%s already exists", request.getName()));
+            throw new DuplicateKanbanException(String.format("%s already exists", request.getName()));
         } 
 
         return response;
