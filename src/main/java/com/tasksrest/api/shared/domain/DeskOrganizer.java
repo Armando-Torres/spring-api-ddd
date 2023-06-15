@@ -2,7 +2,7 @@ package com.tasksrest.api.shared.domain;
 
 import java.util.Collection;
 
-public abstract class TaskContainer {
+public abstract class DeskOrganizer {
     private Integer id;
 
     private Integer order;
@@ -10,6 +10,13 @@ public abstract class TaskContainer {
     private String name;
 
     private Collection<Task> tasks;
+
+    public DeskOrganizer() {}
+
+    public DeskOrganizer(String name, Integer order) {
+        this.name = name;
+        this.order = order;
+    }
 
     public void setId(Integer id) {
         this.id = id;

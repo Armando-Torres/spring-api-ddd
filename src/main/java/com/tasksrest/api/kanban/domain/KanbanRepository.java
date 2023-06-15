@@ -5,7 +5,7 @@ import java.util.List;
 public interface KanbanRepository {
     List<Kanban> findAll();
 
-    Kanban getById(Integer id);
+    Kanban findById(Integer id);
 
     Kanban save(Kanban kanban);
 }
