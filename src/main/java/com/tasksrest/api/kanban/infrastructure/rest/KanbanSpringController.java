@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tasksrest.api.kanban.application.CreateKanban;
 import com.tasksrest.api.kanban.application.GetKanban;
-import com.tasksrest.api.kanban.application.request.CreateKanbanRequest;
-import com.tasksrest.api.kanban.application.response.GetKanbanResponse;
+import com.tasksrest.api.kanban.application.service.CreateKanbanRequest;
+import com.tasksrest.api.kanban.application.service.KanbanResponse;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
 
 @RestController
@@ -24,10 +24,10 @@ public class KanbanSpringController {
     private KanbanRepository kanbanRepository;
 
     @PostMapping
-    public ResponseEntity<GetKanbanResponse> createKanban(@RequestBody CreateKanbanRequest requestBody){
+    public ResponseEntity<KanbanResponse> createKanban(@RequestBody CreateKanbanRequest requestBody){
         CreateKanban useCase = new CreateKanban(this.kanbanRepository);
         
-        GetKanbanResponse kanban = useCase.invoke(requestBody);
+        KanbanResponse kanban = useCase.invoke(requestBody);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(kanban);
     }
@@ -42,10 +42,10 @@ public class KanbanSpringController {
     }*/
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<GetKanbanResponse> getTask(@PathVariable("id") Integer id) {
+    public ResponseEntity<KanbanResponse> getTask(@PathVariable("id") Integer id) {
         GetKanban useCase = new GetKanban(this.kanbanRepository);
 
-        GetKanbanResponse kanban = useCase.invoke(id);
+        KanbanResponse kanban = useCase.invoke(id);
 
         return ResponseEntity.ok(kanban);
     }
