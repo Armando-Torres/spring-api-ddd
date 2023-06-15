@@ -2,22 +2,21 @@ package com.tasksrest.api.kanban.application.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
-import com.tasksrest.api.kanban.domain.Kanban;
 import com.tasksrest.api.kanban.domain.Column;
+import com.tasksrest.api.kanban.domain.Kanban;
 
 public class KanbanResponse {
     private Integer id;
     
     private String name;
 
-    private Collection<Object> columns;
+    private Collection<ColumnResponse> columns;
     
     public KanbanResponse(Kanban kanban) {
         this.id = kanban.getId();
         this.name = kanban.getName();
-        this.columns = this.getColumns(kanban.getColumns());
+        this.columns = this.columnsToColumnResponse(kanban.getColumns());
     }
 
     public Integer getId() {
@@ -28,21 +27,21 @@ public class KanbanResponse {
         return this.name;
     }
 
-    public Collection<Object> getColumns() {
+    public void setColumns(Collection<ColumnResponse> kanbanColumns) {
+        this.columns = kanbanColumns;
+    }
+
+    public Collection<ColumnResponse> getColumns() {
         return this.columns;
     }
 
-    private Collection<Object> getColumns(Collection<Column> columns) {
-        Collection<Object> kanbanColumns = new ArrayList<Object>();
+    private Collection<ColumnResponse> columnsToColumnResponse(Collection<Column> columns) {
+        Collection<ColumnResponse> kanbanColumns = new ArrayList<ColumnResponse>();
 
         for (Column column : columns) {
-            HashMap<String, Object> element = new HashMap<>();
+            ColumnResponse columnResponse = new ColumnResponse(column);
 
-            element.put("name", column.getName());
-            element.put("wip", column.getWip());
-            element.put("order", column.getOrder());
-
-            kanbanColumns.add(element);
+            kanbanColumns.add(columnResponse);
         }
 
         return kanbanColumns;
