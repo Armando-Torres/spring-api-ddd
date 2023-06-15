@@ -1,10 +1,13 @@
 package com.tasksrest.api.kanban.infrastructure.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tasksrest.api.kanban.application.CreateKanban;
+import com.tasksrest.api.kanban.application.GetAllKanban;
 import com.tasksrest.api.kanban.application.GetKanban;
+import com.tasksrest.api.kanban.application.UpdateKanban;
 import com.tasksrest.api.kanban.application.service.CreateKanbanRequest;
+import com.tasksrest.api.kanban.application.service.KanbanRequest;
 import com.tasksrest.api.kanban.application.service.KanbanResponse;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
@@ -36,17 +42,17 @@ public class KanbanSpringController {
         return ResponseEntity.status(HttpStatus.CREATED).body(kanban);
     }
 
-    /*@PatchMapping(path = "/{id}")
-    public ResponseEntity<Task> editTasks(@PathVariable("id") Integer id, @RequestBody Task task) {
-        UpdateTask useCase = new UpdateTask(repository);
+    @PatchMapping(path = "/{id}")
+    public ResponseEntity<KanbanResponse> editTasks(@PathVariable("id") Integer id, @RequestBody KanbanRequest kanban) {
+        UpdateKanban useCase = new UpdateKanban(kanbanRepository);
 
-        Task updateTask = useCase.invoke(id, task);
+        KanbanResponse updateKanban = useCase.invoke(id, kanban);
         
-        return ResponseEntity.ok(updateTask);
-    }*/
+        return ResponseEntity.ok(updateKanban);
+    }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<KanbanResponse> getTask(@PathVariable("id") Integer id) {
+    public ResponseEntity<KanbanResponse> getKanban(@PathVariable("id") Integer id) {
         GetKanban useCase = new GetKanban(this.kanbanRepository);
 
         KanbanResponse kanban = useCase.invoke(id);
@@ -54,17 +60,13 @@ public class KanbanSpringController {
         return ResponseEntity.ok(kanban);
     }
 
-    /*@GetMapping
-    public ResponseEntity<List<GetKanbanResponse>> getTasks(@RequestParam Map<String,String> filters) {
-        GetTasks useCase = new GetTasks(this.repository);
+    @GetMapping
+    public ResponseEntity<List<KanbanResponse>> getAllKanban() {
+        GetAllKanban useCase = new GetAllKanban(this.kanbanRepository);
 
-        Pagination pagination = new Pagination(Integer.parseInt(filters.get("offset")), Integer.parseInt(filters.get("limit")));
-        TaskStatus status = (filters.get("status") != null) ? new TaskStatus(filters.get("status")) : null;
-        TasksFilters taskFilters = new TasksFilters(filters.get("name"), filters.get("desc"), status, pagination);
+        List<KanbanResponse> kanban = useCase.invoke();
 
-        List<GetKanbanResponse> tasks = useCase.invoke(taskFilters);
-        
-        return ResponseEntity.ok(tasks);
-    }*/
+        return ResponseEntity.ok(kanban);
+    }
 }
     
