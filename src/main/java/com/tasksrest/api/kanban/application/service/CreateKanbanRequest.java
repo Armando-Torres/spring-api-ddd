@@ -6,7 +6,7 @@ import java.util.List;
 public class CreateKanbanRequest {
     private String name;
 
-    private List<AddColumnRequest> columns = new ArrayList<AddColumnRequest>();
+    private List<ColumnRequest> columns = new ArrayList<ColumnRequest>();
 
     public String getName(){
         return this.name;
@@ -16,11 +16,11 @@ public class CreateKanbanRequest {
         this.name = value;
     }
 
-    public List<AddColumnRequest> getColumns() {
+    public List<ColumnRequest> getColumns() {
         return this.columns;
     }
 
-    public void setColumns(List<AddColumnRequest> columns) {
+    public void setColumns(List<ColumnRequest> columns) {
         this.columns = columns;
     }
 }
