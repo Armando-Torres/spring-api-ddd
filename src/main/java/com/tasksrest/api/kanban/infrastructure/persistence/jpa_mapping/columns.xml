@@ -14,7 +14,7 @@
                 <column name="wip" column-definition="int(2)" nullable="false"/>
             </basic>
 
-            <many-to-one name="kanban" fetch="LAZY"/>
+            <many-to-one name="kanban"/>
         </attributes>
     </entity>
 </entity-mappings>

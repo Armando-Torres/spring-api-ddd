@@ -9,6 +9,12 @@ public class Column extends DeskOrganizer {
 
     public Column() {}
 
+    public Column(String name, Integer order, Integer wip) {
+        super(name, order);
+        
+        this.wip = wip;
+    }
+
     public Column(String name, Integer order, Integer wip, Kanban kanban) {
         super(name, order);
         

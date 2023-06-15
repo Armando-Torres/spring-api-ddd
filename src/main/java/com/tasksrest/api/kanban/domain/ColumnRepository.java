@@ -7,7 +7,5 @@ public interface ColumnRepository {
 
     Column findById(Integer id);
 
-    //KanbanColumn getByKanban(Kanban kanban);
-
     Column save(Column kanban);
 }
