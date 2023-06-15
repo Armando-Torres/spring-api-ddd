@@ -1,5 +1,6 @@
 package com.tasksrest.api.kanban.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Kanban {
@@ -7,19 +8,13 @@ public class Kanban {
 
     private String name;
 
-    private Collection<KanbanColumn> columns;
+    private Collection<Column> columns;
 
-    public Kanban() {
-
-    }
+    public Kanban() { }
 
     public Kanban(String name) {
         this.name = name;
-    }
-
-    public Kanban(String name, Collection<KanbanColumn> columns) {
-        this.name = name;
-        this.columns = columns;
+        this.columns = new ArrayList<Column>();
     }
 
     public Integer getId() {
@@ -38,11 +33,19 @@ public class Kanban {
         this.name = name;
     }
 
-    public Collection<KanbanColumn> getColumns() {
+    public Collection<Column> getColumns() {
         return this.columns;
     }
 
-    public void setColumns(Collection<KanbanColumn> columns) {
+    public void setColumns(Collection<Column> columns) {
         this.columns = columns;
+    }
+
+    public void addColumn(Column column) {
+        this.columns.add(column);
+    }
+
+    public Boolean deleteColumn(Column column) {
+        return this.columns.remove(column);
     }
 }

@@ -1,15 +1,17 @@
 package com.tasksrest.api.kanban.domain;
 
-import com.tasksrest.api.shared.domain.TaskContainer;
+import com.tasksrest.api.shared.domain.DeskOrganizer;
 
-public class KanbanColumn extends TaskContainer{
+public class Column extends DeskOrganizer {
     private Integer wip;
 
     private Kanban kanban;
 
-    public KanbanColumn() {}
+    public Column() {}
 
-    public KanbanColumn(Integer wip, Kanban kanban) {
+    public Column(String name, Integer order, Integer wip, Kanban kanban) {
+        super(name, order);
+        
         this.wip = wip;
         this.kanban = kanban;
     }
