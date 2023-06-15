@@ -11,7 +11,7 @@ import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.Column;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
-import com.tasksrest.api.shared.domain.exception.DuplicateTaskException;
+import com.tasksrest.api.kanban.domain.exception.DuplicateColumnException;
 
 public class AddColumn {
     private final KanbanRepository kanbanRepository;
@@ -22,9 +22,18 @@ public class AddColumn {
         this.kanbanRepository = kanbanRepository;
     }
 
+    public List<ColumnResponse> invoke(Kanban kanban, List<AddColumnRequest> request){ 
+        return this.invokeInternal(kanban, request);
+    }
+
     public List<ColumnResponse> invoke(Integer kanbanId, List<AddColumnRequest> request){
-        List<ColumnResponse> persistKanban = new ArrayList<ColumnResponse>();
         Kanban kanban = this.kanbanRepository.findById(kanbanId);
+
+        return this.invokeInternal(kanban, request);
+    }
+
+    private List<ColumnResponse> invokeInternal(Kanban kanban, List<AddColumnRequest> request) {
+        List<ColumnResponse> persistKanban = new ArrayList<ColumnResponse>();
 
         try {
             for (AddColumnRequest column : request) {
@@ -38,7 +47,7 @@ public class AddColumn {
             }            
 
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateTaskException(String.format("d already exists", kanbanId));
+            throw new DuplicateColumnException(String.format("%s already exists", kanban.getName()));
         } 
 
         return persistKanban;
