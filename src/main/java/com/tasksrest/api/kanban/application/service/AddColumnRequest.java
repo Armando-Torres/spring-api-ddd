@@ -1,6 +1,6 @@
-package com.tasksrest.api.kanban.application.request;
+package com.tasksrest.api.kanban.application.service;
 
-public class CreateKanbanColumnRequest {
+public class AddColumnRequest {
     private String name;
 
     private Integer wip;
