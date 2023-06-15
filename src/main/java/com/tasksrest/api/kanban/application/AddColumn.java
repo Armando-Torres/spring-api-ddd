@@ -47,7 +47,7 @@ public class AddColumn {
             }            
 
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateColumnException(String.format("%s already exists", kanban.getName()));
+            throw new DuplicateColumnException("Some columns already exists");
         } 
 
         return persistKanban;
