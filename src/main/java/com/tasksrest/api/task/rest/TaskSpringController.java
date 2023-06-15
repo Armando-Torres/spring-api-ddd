@@ -1,4 +1,4 @@
-package com.tasksrest.api.shared.infrastructure.rest;
+package com.tasksrest.api.task.rest;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ import com.tasksrest.api.shared.application.CreateTask;
 import com.tasksrest.api.shared.application.GetTask;
 import com.tasksrest.api.shared.application.GetTasks;
 import com.tasksrest.api.shared.application.UpdateTask;
-import com.tasksrest.api.shared.application.requests.CreateTaskRequest;
+import com.tasksrest.api.shared.application.service.CreateTaskRequest;
 import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.vo.Pagination;
