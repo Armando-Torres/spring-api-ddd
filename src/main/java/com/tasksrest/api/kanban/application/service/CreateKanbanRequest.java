@@ -1,10 +1,11 @@
 package com.tasksrest.api.kanban.application.service;
 
+import java.util.List;
 
 public class CreateKanbanRequest {
     private String name;
 
-    //private List<CreateKanbanColumnRequest> columns;
+    private List<AddColumnRequest> columns;
 
     public String getName(){
         return this.name;
@@ -14,11 +15,11 @@ public class CreateKanbanRequest {
         this.name = value;
     }
 
-    /*public List<CreateKanbanColumnRequest> getColumns() {
+    public List<AddColumnRequest> getColumns() {
         return this.columns;
     }
 
-    public void setColumns(List<CreateKanbanColumnRequest> columns) {
+    public void setColumns(List<AddColumnRequest> columns) {
         this.columns = columns;
-    }*/
+    }
 }
