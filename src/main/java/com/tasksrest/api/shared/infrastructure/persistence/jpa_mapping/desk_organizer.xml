@@ -5,9 +5,9 @@
                  version="2.2">
     <package>com.tasksrest.api.shared.infrastructure.persistence.jpa_mapping</package>
 
-    <entity class="com.tasksrest.api.shared.domain.TaskContainer" abstract="true">
-        <table name="tasks_container"/>
-        <inheritance strategy="JOINED"/>
+    <entity class="com.tasksrest.api.shared.domain.DeskOrganizer" abstract="true">
+        <table name="desk_organizer"/>
+        <inheritance strategy="SINGLE_TABLE"/>
         <discriminator-column name="type"/>
 
         <attributes>
@@ -21,7 +21,7 @@
             </basic>
 
             <basic name="order">
-                <column name="order_index" column-definition="int(2)" nullable="true"/>
+                <column name="`order`" column-definition="int(2)" nullable="true"/>
             </basic>
 
             <one-to-many name="tasks" mapped-by="taskContainer" />

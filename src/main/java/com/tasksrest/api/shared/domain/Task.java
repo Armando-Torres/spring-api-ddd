@@ -11,7 +11,7 @@ public final class Task {
 
     private TaskStatus status;
 
-    private TaskContainer taskContainer;
+    private DeskOrganizer taskContainer;
 
     //private User user;
 
@@ -58,11 +58,11 @@ public final class Task {
         return (this.status != null) ? this.status.getValue() : null;
     }
 
-    public void setTaskContainer(TaskContainer taskContainer) {
+    public void setTaskContainer(DeskOrganizer taskContainer) {
         this.taskContainer = taskContainer;
     }
 
-    public TaskContainer getTaskContainer(){
+    public DeskOrganizer getTaskContainer(){
         return this.taskContainer;
     }
     

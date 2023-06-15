@@ -5,16 +5,16 @@
                  version="2.2">
     <package>com.tasksrest.api.kanban.infrastructure.persistence.jpa_mapping</package>
 
-    <entity class="com.tasksrest.api.kanban.domain.KanbanColumn">
-        <table name="kanban_board_columns"/>
-        <discriminator-value>B</discriminator-value>
+    <entity class="com.tasksrest.api.kanban.domain.Column">
+        <table name="kanban_columns"/>
+        <discriminator-value>kanban</discriminator-value>
 
         <attributes>
             <basic name="wip">
                 <column name="wip" column-definition="int(2)" nullable="false"/>
             </basic>
 
-            <many-to-one name="kanban" />
+            <many-to-one name="kanban" fetch="LAZY"/>
         </attributes>
     </entity>
 </entity-mappings>
