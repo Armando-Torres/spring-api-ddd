@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import com.tasksrest.api.kanban.domain.Kanban;
-import com.tasksrest.api.kanban.application.service.AddColumnRequest;
+import com.tasksrest.api.kanban.application.service.ColumnRequest;
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.Column;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
@@ -22,21 +22,21 @@ public class AddColumn {
         this.kanbanRepository = kanbanRepository;
     }
 
-    public List<ColumnResponse> invoke(Kanban kanban, List<AddColumnRequest> request){ 
+    public List<ColumnResponse> invoke(Kanban kanban, List<ColumnRequest> request){ 
         return this.invokeInternal(kanban, request);
     }
 
-    public List<ColumnResponse> invoke(Integer kanbanId, List<AddColumnRequest> request){
+    public List<ColumnResponse> invoke(Integer kanbanId, List<ColumnRequest> request){
         Kanban kanban = this.kanbanRepository.findById(kanbanId);
 
         return this.invokeInternal(kanban, request);
     }
 
-    private List<ColumnResponse> invokeInternal(Kanban kanban, List<AddColumnRequest> request) {
+    private List<ColumnResponse> invokeInternal(Kanban kanban, List<ColumnRequest> request) {
         List<ColumnResponse> persistKanban = new ArrayList<ColumnResponse>();
 
         try {
-            for (AddColumnRequest column : request) {
+            for (ColumnRequest column : request) {
                 Column kanbanColumn = new Column(column.getName(), column.getOrder(), column.getWip(), kanban);
                 
                 persistKanban.add(
