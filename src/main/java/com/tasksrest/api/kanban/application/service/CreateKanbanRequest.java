@@ -1,11 +1,12 @@
 package com.tasksrest.api.kanban.application.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateKanbanRequest {
     private String name;
 
-    private List<AddColumnRequest> columns;
+    private List<AddColumnRequest> columns = new ArrayList<AddColumnRequest>();
 
     public String getName(){
         return this.name;
