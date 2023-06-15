@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.application.service.CreateKanbanRequest;
 import com.tasksrest.api.kanban.application.service.KanbanResponse;
+import com.tasksrest.api.kanban.application.service.KanbanWithColumnsResponse;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.Kanban;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
@@ -24,7 +25,8 @@ public class CreateKanban {
 
     public KanbanResponse invoke(CreateKanbanRequest request){
         Kanban persistKanban = null;
-        KanbanResponse response;
+        KanbanResponse response = null;
+        KanbanWithColumnsResponse responseWithColumns = null;
 
         try {
             persistKanban = this.kanbanRepository.save(new Kanban(request.getName()));
@@ -32,17 +34,19 @@ public class CreateKanban {
 
             // If columns are set, call AddColumn use case instead of give responsability to persistence mapping
             if (request.getColumns().size() > 0) {
+                responseWithColumns =  new KanbanWithColumnsResponse(persistKanban);
+
                 AddColumn addColumnUseCase = new AddColumn(this.columnRepository, this.kanbanRepository);
             
                 List<ColumnResponse> kanbanColumns = addColumnUseCase.invoke(persistKanban, request.getColumns());
 
-                response.setColumns(kanbanColumns);
+                responseWithColumns.setColumns(kanbanColumns);
             }
 
         } catch (DataIntegrityViolationException e) {
             throw new DuplicateKanbanException(String.format("%s already exists", request.getName()));
         } 
 
-        return response;
+        return (responseWithColumns != null) ? responseWithColumns : response;
     }
 }
