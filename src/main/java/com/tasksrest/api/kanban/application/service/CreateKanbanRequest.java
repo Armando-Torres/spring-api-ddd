@@ -1,6 +1,5 @@
-package com.tasksrest.api.kanban.application.request;
+package com.tasksrest.api.kanban.application.service;
 
-import java.util.List;
 
 public class CreateKanbanRequest {
     private String name;

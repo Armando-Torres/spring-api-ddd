@@ -1,4 +1,4 @@
-package com.tasksrest.api.kanban.application.response;
+package com.tasksrest.api.kanban.application.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,14 +7,14 @@ import java.util.HashMap;
 import com.tasksrest.api.kanban.domain.Kanban;
 import com.tasksrest.api.kanban.domain.Column;
 
-public class GetKanbanResponse {
+public class KanbanResponse {
     private Integer id;
     
     private String name;
 
     private Collection<Object> columns;
     
-    public GetKanbanResponse(Kanban kanban) {
+    public KanbanResponse(Kanban kanban) {
         this.id = kanban.getId();
         this.name = kanban.getName();
         this.columns = this.getColumns(kanban.getColumns());
