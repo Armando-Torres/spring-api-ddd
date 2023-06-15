@@ -18,9 +18,7 @@
                 <column name="name" column-definition="varchar(100)" unique="true" nullable="false"/>
             </basic>
 
-            <one-to-many name="columns" mapped-by="kanban">
-                <!--<cascade>cascade-persist</cascade>-->
-            </one-to-many>
+            <one-to-many name="columns" mapped-by="kanban" cascade="all" />
         </attributes>
     </entity>
 </entity-mappings>
