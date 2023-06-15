@@ -18,7 +18,11 @@
                 <column name="name" column-definition="varchar(100)" unique="true" nullable="false"/>
             </basic>
 
-            <one-to-many name="columns" mapped-by="kanban" cascade="all" />
+            <one-to-many name="columns" mapped-by="kanban">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
         </attributes>
     </entity>
 </entity-mappings>
