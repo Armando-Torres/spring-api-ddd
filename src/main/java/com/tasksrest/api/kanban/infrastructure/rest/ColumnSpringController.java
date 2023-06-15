@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tasksrest.api.kanban.application.AddColumn;
+import com.tasksrest.api.kanban.application.DeleteColumn;
+import com.tasksrest.api.kanban.application.GetColumn;
 import com.tasksrest.api.kanban.application.GetColumns;
 import com.tasksrest.api.kanban.application.UpdateColumn;
-import com.tasksrest.api.kanban.application.service.AddColumnRequest;
 import com.tasksrest.api.kanban.application.service.ColumnRequest;
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
@@ -34,7 +38,7 @@ public class ColumnSpringController {
     private ColumnRepository columnRepository;
 
     @PostMapping
-    public ResponseEntity<List<ColumnResponse>> createKanbanColumn(@PathVariable("kanbanId") Integer kanbanId, @RequestBody List<AddColumnRequest> requestBody){
+    public ResponseEntity<List<ColumnResponse>> createKanbanColumn(@PathVariable("kanbanId") Integer kanbanId, @RequestBody List<ColumnRequest> requestBody){
         AddColumn useCase = new AddColumn(this.columnRepository, this.kanbanRepository);
         
         List<ColumnResponse> kanbanColumn = useCase.invoke(kanbanId, requestBody);
@@ -43,21 +47,39 @@ public class ColumnSpringController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ColumnResponse>> getKanbanColumns(@PathVariable("kanbanId") Integer kanbanId) {
+    public ResponseEntity<List<ColumnResponse>> getAllKanbanColumns(@PathVariable("kanbanId") Integer kanbanId) {
         GetColumns useCase = new GetColumns(this.columnRepository, this.kanbanRepository);
         
         List<ColumnResponse> kanbanColumn = useCase.invoke(kanbanId);
 
         return ResponseEntity.status(HttpStatus.OK).body(kanbanColumn);
     }
+    
+    @GetMapping("/{columnId}")
+    public ResponseEntity<ColumnResponse> getKanbanColumn(@PathVariable("columnId") Integer columnId) {
+        GetColumn useCase = new GetColumn(this.columnRepository);
+        
+        ColumnResponse kanbanColumn = useCase.invoke(columnId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(kanbanColumn);
+    }
 
     @PatchMapping("/{columnId}")
-    public ResponseEntity<ColumnResponse> editKanbanColumn(@PathVariable("kanbanId") Integer id, @PathVariable("columnId") Integer idColumn, @RequestBody ColumnRequest column) {
-        UpdateColumn useCase = new UpdateColumn(this.columnRepository, this.kanbanRepository);
+    public ResponseEntity<ColumnResponse> editKanbanColumn(@PathVariable("columnId") Integer columnId, @RequestBody ColumnRequest column) {
+        UpdateColumn useCase = new UpdateColumn(this.columnRepository);
 
-        ColumnResponse updateColumn = useCase.invoke(id, idColumn, column);
+        ColumnResponse updateColumn = useCase.invoke(columnId, column);
         
         return ResponseEntity.ok(updateColumn);
+    }
+
+    @DeleteMapping("/{columnId}")
+    public ResponseEntity<?> deleteKanbanColumn(@PathVariable("columnId") Integer columnId) {
+        DeleteColumn useCase = new DeleteColumn(this.columnRepository);    
+
+        useCase.invoke(columnId);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
 
