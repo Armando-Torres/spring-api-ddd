@@ -196,7 +196,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "[\n    {\n        \"name\": \"Backlog\",\n        \"wip\": 10,\n        \"order\": 1\n    }/*,\n    {\n        \"name\": \"In Progress\",\n        \"wip\": 3,\n        \"order\": 2\n    },\n    {\n        \"name\": \"Done\",\n        \"wip\": 10,\n        \"order\": 3\n    }*/\n]",
+											"raw": "[\n    {\n        \"name\": \"Backlog 2\",\n        \"wip\": 10,\n        \"order\": 4\n    },\n    {\n        \"name\": \"In Progress\",\n        \"wip\": 3,\n        \"order\": 2\n    },\n    {\n        \"name\": \"Done\",\n        \"wip\": 10,\n        \"order\": 3\n    }\n]",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -204,7 +204,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/v1/kanban/9/column",
+											"raw": "{{url}}/api/v1/kanban/2/column",
 											"host": [
 												"{{url}}"
 											],
@@ -212,8 +212,168 @@
 												"api",
 												"v1",
 												"kanban",
-												"9",
+												"2",
 												"column"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Edit by Column id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    //\"name\": \"Backlog\",\n    //\"order\": 1\n    \"wip\": 15\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/kanban/2/column/4",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kanban",
+												"2",
+												"column",
+												"4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete by column id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/kanban/2/column/5",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kanban",
+												"2",
+												"column",
+												"5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get all columns",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/kanban/2/column",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kanban",
+												"2",
+												"column"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get by Id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/kanban/2/column/4",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kanban",
+												"2",
+												"column",
+												"4"
 											]
 										}
 									},
@@ -238,7 +398,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"My Company Kanban\",\n    \"columns\": [/*\n        {\n            \"name\": \"Backlog\",\n            \"wip\": 10,\n            \"order\": 1\n        },\n        {\n            \"name\": \"In Progress\",\n            \"wip\": 3,\n            \"order\": 2\n        },\n        {\n            \"name\": \"Done\",\n            \"wip\": 10,\n            \"order\": 3\n        }*/\n    ]\n}",
+									"raw": "{\n    \"name\": \"My Company\"/*,\n    \"columns\": [\n        {\n            \"name\": \"Backlog\",\n            \"wip\": 10,\n            \"order\": 1\n        },\n        {\n            \"name\": \"In Progress\",\n            \"wip\": 3,\n            \"order\": 2\n        },\n        {\n            \"name\": \"Done\",\n            \"wip\": 10,\n            \"order\": 3\n        }\n    ]*/\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -281,7 +441,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/kanban/1",
+									"raw": "{{url}}/api/v1/kanban/2",
 									"host": [
 										"{{url}}"
 									],
@@ -289,7 +449,87 @@
 										"api",
 										"v1",
 										"kanban",
-										"1"
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/kanban",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"kanban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Another name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/kanban/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"kanban",
+										"2"
 									]
 								}
 							},
