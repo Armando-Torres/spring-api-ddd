@@ -14,6 +14,16 @@
 						{
 							"name": "Create",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -75,6 +85,16 @@
 						{
 							"name": "Get all",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -145,6 +165,130 @@
 										"api",
 										"v1",
 										"task",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Kanban",
+					"item": [
+						{
+							"name": "Column",
+							"item": [
+								{
+									"name": "Add Columns",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{auth_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"name\": \"Backlog\",\n        \"wip\": 10,\n        \"order\": 1\n    }/*,\n    {\n        \"name\": \"In Progress\",\n        \"wip\": 3,\n        \"order\": 2\n    },\n    {\n        \"name\": \"Done\",\n        \"wip\": 10,\n        \"order\": 3\n    }*/\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/kanban/9/column",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"kanban",
+												"9",
+												"column"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Kanban board",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"My Company Kanban\",\n    \"columns\": [/*\n        {\n            \"name\": \"Backlog\",\n            \"wip\": 10,\n            \"order\": 1\n        },\n        {\n            \"name\": \"In Progress\",\n            \"wip\": 3,\n            \"order\": 2\n        },\n        {\n            \"name\": \"Done\",\n            \"wip\": 10,\n            \"order\": 3\n        }*/\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/kanban",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"kanban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/kanban/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"kanban",
 										"1"
 									]
 								}
@@ -244,6 +388,72 @@
 								"protocol",
 								"openid-connect",
 								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Issuer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"let response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"auth_token\", response.access_token);",
+									"pm.collectionVariables.set(\"refresh_token\", response.refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_secret",
+									"value": "{{keycloak_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{keycloak_client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{keycloak_username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{keycloak_userpass}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{keycloak_url}}/realms/{{keycloak_realm}}",
+							"host": [
+								"{{keycloak_url}}"
+							],
+							"path": [
+								"realms",
+								"{{keycloak_realm}}"
 							]
 						}
 					},
