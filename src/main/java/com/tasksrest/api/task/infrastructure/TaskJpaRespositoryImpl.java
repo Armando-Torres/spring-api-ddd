@@ -1,4 +1,4 @@
-package com.tasksrest.api.shared.infrastructure.persistence;
+package com.tasksrest.api.task.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
