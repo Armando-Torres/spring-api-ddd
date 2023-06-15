@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tasksrest.api.kanban.application.AddKanbanColumn;
-import com.tasksrest.api.kanban.application.request.CreateKanbanColumnRequest;
-import com.tasksrest.api.kanban.domain.Column;
+import com.tasksrest.api.kanban.application.AddColumn;
+import com.tasksrest.api.kanban.application.service.AddColumnRequest;
+import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
 
@@ -28,10 +28,10 @@ public class ColumnSpringController {
     private ColumnRepository columnRepository;
 
     @PostMapping()
-    public ResponseEntity<List<Column>> createKanbanColumn(@PathVariable("id") Integer kanbanId, @RequestBody List<CreateKanbanColumnRequest> requestBody){
-        AddKanbanColumn useCase = new AddKanbanColumn(this.columnRepository, this.kanbanRepository);
+    public ResponseEntity<List<ColumnResponse>> createKanbanColumn(@PathVariable("id") Integer kanbanId, @RequestBody List<AddColumnRequest> requestBody){
+        AddColumn useCase = new AddColumn(this.columnRepository, this.kanbanRepository);
         
-        List<Column> kanbanColumn = useCase.invoke(kanbanId, requestBody);
+        List<ColumnResponse> kanbanColumn = useCase.invoke(kanbanId, requestBody);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(kanbanColumn);
     }
