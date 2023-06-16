@@ -11,6 +11,7 @@ import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskHolder;
 import com.tasksrest.api.shared.domain.TaskHolderRepository;
 import com.tasksrest.api.shared.domain.TaskRepository;
+import com.tasksrest.api.shared.domain.exception.NotFoundHolderException;
 import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
 import com.tasksrest.api.shared.domain.vo.TasksFilters;
 
@@ -62,7 +63,10 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
         }
 
         if (filters.getHolderId() != null) {
-            TaskHolder taskHolder = this.taskHolderRepository.findById(filters.getHolderId());
+            TaskHolder taskHolder = this.taskHolderRepository
+                .findById(filters.getHolderId())
+                .orElseThrow(() -> new NotFoundHolderException("Holder not found"));
+
             Predicate holder = cb.equal(root.get("taskHolder"), taskHolder);
             criteria.add(holder);
         }

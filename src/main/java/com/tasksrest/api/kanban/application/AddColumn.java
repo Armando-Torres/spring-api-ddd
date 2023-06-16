@@ -2,6 +2,7 @@ package com.tasksrest.api.kanban.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -27,9 +28,9 @@ public class AddColumn {
     }
 
     public List<ColumnResponse> invoke(Integer kanbanId, List<ColumnRequest> request){
-        Kanban kanban = this.kanbanRepository.findById(kanbanId);
+        Optional<Kanban> kanban = this.kanbanRepository.findById(kanbanId);
 
-        return this.invokeInternal(kanban, request);
+        return this.invokeInternal(kanban.get(), request);
     }
 
     private List<ColumnResponse> invokeInternal(Kanban kanban, List<ColumnRequest> request) {
