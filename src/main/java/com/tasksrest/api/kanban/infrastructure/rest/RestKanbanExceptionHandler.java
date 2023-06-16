@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @ControllerAdvice
 public class RestKanbanExceptionHandler extends ResponseEntityExceptionHandler{
 
-    private final Logger logger = LoggerFactory.getLogger(RestKanbanExceptionHandler.class);
+    private final Logger loggerInstance = LoggerFactory.getLogger(RestKanbanExceptionHandler.class);
 
     @ExceptionHandler({DuplicateColumnException.class})
     protected ResponseEntity<Object> handleDuplicateColumnException(DuplicateColumnException e) {
@@ -49,7 +49,7 @@ public class RestKanbanExceptionHandler extends ResponseEntityExceptionHandler{
     }
 
     private void logException(Integer code, String cause) {
-        this.logger.warn(String.format("%d %s", code, cause));
+        this.loggerInstance.warn(String.format("%d %s", code, cause));
     }
 
     private ResponseEntity<Object> resposeException(HttpStatus status, String cause) {

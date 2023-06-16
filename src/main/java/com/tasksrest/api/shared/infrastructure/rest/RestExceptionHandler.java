@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
-    private final Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
+    private final Logger loggerInstance = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     @ExceptionHandler({DuplicateTaskException.class})
     protected ResponseEntity<Object> handleDuplicateTaskException(DuplicateTaskException e) {
@@ -50,7 +50,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
     
 
     private void logException(Integer code, String cause) {
-        this.logger.warn(String.format("%d %s", code, cause));
+        this.loggerInstance.warn(String.format("%d %s", code, cause));
     }
 
     private ResponseEntity<Object> resposeException(HttpStatus status, String cause) {
