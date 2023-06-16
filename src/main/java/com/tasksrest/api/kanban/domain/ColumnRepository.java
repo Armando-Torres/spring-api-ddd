@@ -1,13 +1,14 @@
 package com.tasksrest.api.kanban.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ColumnRepository {
     List<Column> findAll();
 
-    Column findById(Integer id);
+    Optional<Column> findById(Integer id);
 
-    Column save(Column column);
+    Column save(Column colum);
 
-    void delete(Column column);
+    void delete(Column colum);
 }

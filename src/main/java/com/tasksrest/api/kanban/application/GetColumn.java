@@ -1,5 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
+import java.util.Optional;
+
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.Column;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
@@ -15,12 +17,12 @@ public class GetColumn {
     }
 
     public ColumnResponse invoke(Integer columnId){ 
-        Column column = this.kanbanColumnRepository.findById(columnId);
+        Optional<Column> column = this.kanbanColumnRepository.findById(columnId);
 
-        if (column == null) {
+        if (!column.isPresent()) {
             throw new NotFoundColumnException(NOT_FOUND);
         }
         
-        return new ColumnResponse(column);
+        return new ColumnResponse(column.get());
     }
 }
