@@ -1,11 +1,13 @@
 package com.tasksrest.api.shared.application.service;
 
-public class CreateTaskRequest {
+public class TaskRequest {
     private String name;
 
     private String desc;
 
     private String status;
+
+    private Integer order;
 
     public String getName(){
         return this.name;
@@ -29,5 +31,13 @@ public class CreateTaskRequest {
 
     public void setStatus(String value){
         this.status = value;
+    }
+
+    public Integer getOrder() {
+        return this.order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }

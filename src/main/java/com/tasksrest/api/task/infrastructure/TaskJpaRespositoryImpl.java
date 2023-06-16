@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tasksrest.api.shared.domain.Task;
+import com.tasksrest.api.shared.domain.TaskHolder;
+import com.tasksrest.api.shared.domain.TaskHolderRepository;
 import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
 import com.tasksrest.api.shared.domain.vo.TasksFilters;
@@ -28,6 +30,9 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
 
     @Autowired
     private TaskJpaRepository jpaRepository;
+
+    @Autowired
+    private TaskHolderRepository taskHolderRepository;
     
     @Override
     public List<Task> findAllWithCriteria(TasksFilters filters) {
@@ -54,6 +59,12 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
         if (filters.getDesc() != null) {
             Predicate desc = cb.like(root.get("description"), String.format("%%%s%%", filters.getDesc()));
             criteria.add(desc);
+        }
+
+        if (filters.getHolderId() != null) {
+            TaskHolder taskHolder = this.taskHolderRepository.findById(filters.getHolderId());
+            Predicate holder = cb.equal(root.get("taskHolder"), taskHolder);
+            criteria.add(holder);
         }
                 
         if (filters.getStatus() != null) {
