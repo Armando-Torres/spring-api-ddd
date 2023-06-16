@@ -27,6 +27,10 @@
             </basic>
             
             <many-to-one name="taskHolder" />
+
+            <basic name="order">
+                <column name="`order`" column-definition="int(2)" nullable="false"/>
+            </basic>
         </attributes>
     </entity>
 </entity-mappings>
