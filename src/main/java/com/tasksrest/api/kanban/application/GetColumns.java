@@ -1,6 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
@@ -20,9 +21,9 @@ public class GetColumns {
     }
 
     public List<ColumnResponse> invoke(Integer kanbanId){ 
-        Kanban kanban = this.kanbanRepository.findById(kanbanId);
+        Optional<Kanban> kanban = this.kanbanRepository.findById(kanbanId);
         
-        if (kanban == null) {
+        if (!kanban.isPresent()) {
             throw new NotFoundKanbanException("Not found");
         }
 
