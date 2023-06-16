@@ -13,6 +13,7 @@ import com.tasksrest.api.kanban.domain.Column;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
 import com.tasksrest.api.kanban.domain.exception.DuplicateColumnException;
+import com.tasksrest.api.kanban.domain.exception.NotFoundKanbanException;
 
 public class AddColumn {
     private final KanbanRepository kanbanRepository;
@@ -29,6 +30,10 @@ public class AddColumn {
 
     public List<ColumnResponse> invoke(Integer kanbanId, List<ColumnRequest> request){
         Optional<Kanban> kanban = this.kanbanRepository.findById(kanbanId);
+
+        if (!kanban.isPresent()) {
+            throw new NotFoundKanbanException(String.format("Kanban with id:%d not found", kanbanId));
+        }
 
         return this.invokeInternal(kanban.get(), request);
     }
