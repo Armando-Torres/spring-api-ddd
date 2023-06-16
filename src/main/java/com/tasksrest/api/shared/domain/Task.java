@@ -13,16 +13,19 @@ public final class Task {
 
     private TaskHolder taskHolder;
 
+    private Integer order;
+
     //private User user;
 
     public Task() {
         // Default constructor is required for JPA
     }
 
-    public Task(String name, String description, String status/*, User user*/) {
+    public Task(String name, String description, String status, Integer order/*, User user*/) {
         this.name = name;
         this.description = description;
         this.status = new TaskStatus(status.toUpperCase());
+        this.order = order;
         //this.user = user;
     }
 
@@ -64,6 +67,14 @@ public final class Task {
 
     public TaskHolder getTaskHolder(){
         return this.taskHolder;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public Integer getOrder(){
+        return this.order;
     }
     
 }

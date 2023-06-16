@@ -1,7 +1,9 @@
 package com.tasksrest.api.shared.application;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.tasksrest.api.shared.application.service.TaskResponse;
 import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.vo.TasksFilters;
@@ -13,9 +15,11 @@ public class GetTasks {
         this.repository = repository;
     }
 
-    public List<Task> invoke(TasksFilters filters) { 
+    public List<TaskResponse> invoke(TasksFilters filters) { 
         List<Task> tasks = this.repository.findAllWithCriteria(filters);
         
-        return tasks;
+        return tasks.stream()
+            .map(task -> { return new TaskResponse(task); })
+            .collect(Collectors.toList());
     }
 }

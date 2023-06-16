@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.tasksrest.api.shared.application.service.TaskRequest;
+import com.tasksrest.api.shared.application.service.TaskResponse;
 import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.exception.UpdateEmptyException;
@@ -16,7 +18,7 @@ public class UpdateTask {
         this.repository = repository;
     }
 
-    public Task invoke(Integer id, Task newTaskData){
+    public TaskResponse invoke(Integer id, TaskRequest newTaskData){
         this.checkIfAtLeastOneFieldAreForUpdate(id, newTaskData);
 
         Task task = this.repository.findById(id);
@@ -26,8 +28,12 @@ public class UpdateTask {
             task.setName(newTaskData.getName());
         }
         
-        if (newTaskData.getDescription() != null) {
-            task.setDescription(newTaskData.getDescription());
+        if (newTaskData.getDesc() != null) {
+            task.setDescription(newTaskData.getDesc());
+        }
+
+        if (newTaskData.getOrder() != null) {
+            task.setOrder(newTaskData.getOrder());
         }
 
         if (newTaskData.getStatus() != null) {
@@ -36,10 +42,10 @@ public class UpdateTask {
 
         persistTask = this.repository.save(task);
 
-        return persistTask;
+        return new TaskResponse(persistTask);
     }
 
-    private void checkIfAtLeastOneFieldAreForUpdate(Integer id, Task newTaskData) {
+    private void checkIfAtLeastOneFieldAreForUpdate(Integer id, TaskRequest newTaskData) {
 
         Class<?> taskClass = newTaskData.getClass();
 
