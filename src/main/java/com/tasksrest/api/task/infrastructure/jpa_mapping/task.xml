@@ -26,7 +26,7 @@
                 <column name="status" column-definition="varchar(10)" nullable="false"/>
             </basic>
             
-            <one-to-one name="taskHolder" />
+            <many-to-one name="taskHolder" />
         </attributes>
     </entity>
 </entity-mappings>
