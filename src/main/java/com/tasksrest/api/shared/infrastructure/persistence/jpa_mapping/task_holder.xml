@@ -24,7 +24,11 @@
                 <column name="`order`" column-definition="int(2)" nullable="true"/>
             </basic>
 
-            <one-to-many name="tasks" mapped-by="taskHolder" />
+            <one-to-many name="tasks" mapped-by="taskHolder">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
         </attributes>
     </entity>
 </entity-mappings>
