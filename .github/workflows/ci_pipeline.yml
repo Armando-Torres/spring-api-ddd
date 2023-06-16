@@ -1,4 +1,4 @@
-name: SonarCloud analysis
+name: CI Pipeline
 
 on:
   push:
@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  pull-requests: read # allows SonarCloud to decorate PRs with analysis results
+  pull-requests: read
 
 jobs:
-  Analysis:
+  SonarCloud:
     runs-on: ubuntu-latest
 
     steps:
