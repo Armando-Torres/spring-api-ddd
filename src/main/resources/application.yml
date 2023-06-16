@@ -20,7 +20,7 @@ spring:
       ddl-auto: update
     mapping-resources:
      - classpath:com/tasksrest/api/task/infrastructure/jpa_mapping/task.xml
-     - classpath:com/tasksrest/api/shared/infrastructure/persistence/jpa_mapping/desk_organizer.xml
+     - classpath:com/tasksrest/api/shared/infrastructure/persistence/jpa_mapping/task_holder.xml
      - classpath:com/tasksrest/api/kanban/infrastructure/persistence/jpa_mapping/kanban.xml
      - classpath:com/tasksrest/api/kanban/infrastructure/persistence/jpa_mapping/columns.xml
 
