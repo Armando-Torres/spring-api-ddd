@@ -1,5 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
+import java.util.Optional;
+
 import com.tasksrest.api.kanban.application.service.ColumnRequest;
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.Column;
@@ -16,27 +18,27 @@ public class UpdateColumn {
     }
 
     public ColumnResponse invoke(Integer columnId, ColumnRequest newColumnData){ 
-        Column column = this.kanbanColumnRepository.findById(columnId);
+        Optional<Column> column = this.kanbanColumnRepository.findById(columnId);
 
-        if (column == null) {
+        if (!column.isPresent()) {
             throw new NotFoundColumnException(NOT_FOUND);
         }
 
         Column persistColumn = null;
 
         if (newColumnData.getName() != null) {
-            column.setName(newColumnData.getName());
+            column.get().setName(newColumnData.getName());
         }
         
         if (newColumnData.getWip() != null) {
-            column.setWip(newColumnData.getWip());
+            column.get().setWip(newColumnData.getWip());
         }
 
         if (newColumnData.getOrder() != null) {
-            column.setOrder(newColumnData.getOrder());
+            column.get().setOrder(newColumnData.getOrder());
         }
 
-        persistColumn = this.kanbanColumnRepository.save(column);
+        persistColumn = this.kanbanColumnRepository.save(column.get());
         
         return new ColumnResponse(persistColumn);
     }
