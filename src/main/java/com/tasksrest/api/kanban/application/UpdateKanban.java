@@ -1,5 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
+import java.util.Optional;
+
 import com.tasksrest.api.kanban.application.service.KanbanRequest;
 import com.tasksrest.api.kanban.application.service.KanbanResponse;
 import com.tasksrest.api.kanban.domain.Kanban;
@@ -16,19 +18,19 @@ public class UpdateKanban {
     }
 
     public KanbanResponse invoke(Integer kanbanId, KanbanRequest newKanbanData){ 
-        Kanban kanban = this.kanbanRepository.findById(kanbanId);
+        Optional<Kanban> kanban = this.kanbanRepository.findById(kanbanId);
 
-        if (kanban == null) {
+        if (!kanban.isPresent()) {
             throw new NotFoundKanbanException(NOT_FOUND);
         }
 
         Kanban persistKanban = null;
 
         if (newKanbanData.getName() != null) {
-            kanban.setName(newKanbanData.getName());
+            kanban.get().setName(newKanbanData.getName());
         }
 
-        persistKanban = this.kanbanRepository.save(kanban);
+        persistKanban = this.kanbanRepository.save(kanban.get());
         
         return new KanbanResponse(persistKanban);
     }

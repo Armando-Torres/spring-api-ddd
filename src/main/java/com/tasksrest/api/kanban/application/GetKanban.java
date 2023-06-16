@@ -1,5 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
+import java.util.Optional;
+
 import com.tasksrest.api.kanban.application.service.KanbanResponse;
 import com.tasksrest.api.kanban.domain.Kanban;
 import com.tasksrest.api.kanban.domain.KanbanRepository;
@@ -13,12 +15,12 @@ public class GetKanban {
     }
 
     public KanbanResponse invoke(Integer id) {
-        Kanban kanban = this.repository.findById(id);
+        Optional<Kanban> kanban = this.repository.findById(id);
         
-        if (kanban == null) {
+        if (!kanban.isPresent()) {
             throw new NotFoundKanbanException("Not found");
         }
         
-        return new KanbanResponse(kanban);
+        return new KanbanResponse(kanban.get());
     }
 }
