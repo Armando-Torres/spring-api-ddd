@@ -23,7 +23,6 @@ import com.tasksrest.api.shared.application.UpdateTask;
 import com.tasksrest.api.shared.application.service.CreateTaskRequest;
 import com.tasksrest.api.shared.application.service.TaskRequest;
 import com.tasksrest.api.shared.application.service.TaskResponse;
-import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskHolderRepository;
 import com.tasksrest.api.shared.domain.TaskRepository;
 import com.tasksrest.api.shared.domain.vo.Pagination;
