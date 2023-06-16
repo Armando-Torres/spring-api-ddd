@@ -1,8 +1,8 @@
 package com.tasksrest.api.kanban.domain;
 
-import com.tasksrest.api.shared.domain.DeskOrganizer;
+import com.tasksrest.api.shared.domain.TaskHolder;
 
-public class Column extends DeskOrganizer {
+public class Column extends TaskHolder {
     private Integer wip;
 
     private Kanban kanban;
