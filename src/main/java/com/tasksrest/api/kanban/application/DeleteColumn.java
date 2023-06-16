@@ -1,5 +1,7 @@
 package com.tasksrest.api.kanban.application;
 
+import java.util.Optional;
+
 import com.tasksrest.api.kanban.domain.Column;
 import com.tasksrest.api.kanban.domain.ColumnRepository;
 import com.tasksrest.api.kanban.domain.exception.NotFoundColumnException;
@@ -14,12 +16,12 @@ public class DeleteColumn {
     }
 
     public void invoke(Integer columnId){ 
-        Column column = this.kanbanColumnRepository.findById(columnId);
+        Optional<Column> column = this.kanbanColumnRepository.findById(columnId);
 
-        if (column == null) {
+        if (!column.isPresent()) {
             throw new NotFoundColumnException(NOT_FOUND);
         }
 
-        this.kanbanColumnRepository.delete(column);
+        this.kanbanColumnRepository.delete(column.get());
     }
 }
