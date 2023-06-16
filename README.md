@@ -1,3 +1,7 @@
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Armando-Torres_spring-api-ddd&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Armando-Torres_spring-api-ddd&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Armando-Torres_spring-api-ddd&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Armando-Torres_spring-api-ddd&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Armando-Torres_spring-api-ddd&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Armando-Torres_spring-api-ddd)
+
 # How-To
 
 ## Description
