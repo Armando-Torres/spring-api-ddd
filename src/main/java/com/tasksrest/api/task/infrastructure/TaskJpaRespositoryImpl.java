@@ -39,9 +39,7 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
     public List<Task> findAllWithCriteria(TasksFilters filters) {
         TypedQuery<Task> query = this.createQueryFindAllWithCriteria(filters);
 
-        List<Task> results = query.getResultList();
-
-        return results;
+        return query.getResultList();
     }
 
     private TypedQuery<Task> createQueryFindAllWithCriteria(TasksFilters filters) {
@@ -76,7 +74,7 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
             criteria.add(status);
         }
 
-        if (criteria.size() > 0) {
+        if (!criteria.isEmpty()) {
             cr.where(cb.and(criteria.toArray(new Predicate[0])));
         }
 

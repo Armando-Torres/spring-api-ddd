@@ -27,7 +27,7 @@ public class CreateTask {
         Optional<TaskHolder> taskHolder = this.taskHolderRepository.findById(request.getTaskHolderId());
 
         if (!taskHolder.isPresent()) {
-            new NotFoundHolderException(String.format("Holder with id:%d not found", request.getTaskHolderId()));
+            throw new NotFoundHolderException(String.format("Holder with id:%d not found", request.getTaskHolderId()));
         }
 
         Task task = new Task(request.getName(), request.getDesc(), request.getStatus(), request.getOrder());
