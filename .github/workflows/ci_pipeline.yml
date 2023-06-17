@@ -11,7 +11,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  SonarCloud:
+  Sonar-Cloud:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,8 @@ jobs:
           args:
             -Dsonar.projectKey=Armando-Torres_spring-api-ddd
             -Dsonar.organization=armando-torres
-  Tests:
+  Unit-Tests:
+    needs: Sonar-Cloud
     runs-on: ubuntu-latest
 
     steps:
