@@ -2,18 +2,20 @@ services:
   jdk:
     image: openjdk:17-slim-buster
     working_dir: /home/app/spring
-    entrypoint: "tail -f /dev/null"
+    entrypoint: "./mvnw spring-boot:run"
     environment:
+      API_PORT: 8081
       API_LOGGING_LEVEL: debug
-      MARIADB_HOST: localhost
+      API_SHOW_SQL: true
+      MARIADB_HOST: db
       MARIADB_PORT: 3306
       MARIADB_USERNAME: api
       MARIADB_PASSWORD: api
-      KEYCLOAK_URL: localhost
-      KEYCLOAK_PORT: 8082
+      KEYCLOAK_URL: keycloak
+      KEYCLOAK_PORT: 8080
       KEYCLOAK_REALM: Spring-DDD
     ports:
-      - 8080:8080
+      - 8080:8081
     volumes:
       - ${PWD}:/home/app/spring
     networks:
