@@ -3,6 +3,17 @@ services:
     image: openjdk:17-slim-buster
     working_dir: /home/app/spring
     entrypoint: "tail -f /dev/null"
+    environment:
+      API_LOGGING_LEVEL: debug
+      MARIADB_HOST: localhost
+      MARIADB_PORT: 3306
+      MARIADB_USERNAME: api
+      MARIADB_PASSWORD: api
+      KEYCLOAK_URL: localhost
+      KEYCLOAK_PORT: 8082
+      KEYCLOAK_REALM: Spring-DDD
+    ports:
+      - 8080:8080
     volumes:
       - ${PWD}:/home/app/spring
     networks:
