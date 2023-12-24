@@ -1,0 +1,38 @@
+services:
+  jdk:
+    image: openjdk:17-slim-buster
+    working_dir: /home/app/spring
+    entrypoint: "tail -f /dev/null"
+    volumes:
+      - ${PWD}:/home/app/spring
+    networks:
+      - tasks_api
+    profiles:
+        - dev
+      
+  db:
+    environment:
+      MARIADB_ROOT_PASSWORD: toor
+      MARIADB_USER: api
+      MARIADB_PASSWORD: api
+      MARIADB_DATABASE: tasks_manager
+    profiles:
+      - dev
+      
+  keycloak:
+    environment:
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+        KC_DB: mariadb
+        KC_DB_PASSWORD: toor
+        KC_DB_SCHEMA: keycloak
+        KC_DB_USERNAME: root
+        KC_DB_URL_HOST: db
+        KC_HOSTNAME: localhost
+        KC_HTTP_ENABLED: true
+        KC_FEATURES: account-api, account2, authorization, impersonation
+        KC_FEATURES_DISABLED: account3, admin-api, admin2, ciba, client-policies, dynamic-scopes, js-adapter, kerberos, map-storage, par, preview, step-up-authentication, web-authn
+    networks: 
+      - tasks_api
+    profiles:
+        - dev
