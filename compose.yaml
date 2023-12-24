@@ -9,6 +9,8 @@ services:
       - ${PWD}/target/taskmanager.war:/usr/local/tomcat/webapps/taskmanager.war:ro
     networks: 
       - tasks_api
+    profiles:
+        - prod
   
   db:
     image: mariadb:10.9.2
@@ -23,6 +25,8 @@ services:
       - "task_api:/var/lib/mysql"
     networks: 
       - tasks_api
+    profiles:
+        - prod
 
   keycloak:
     image: keycloak/keycloak:21.1
@@ -45,6 +49,8 @@ services:
         KC_FEATURES_DISABLED: account3, admin-api, admin2, ciba, client-policies, dynamic-scopes, js-adapter, kerberos, map-storage, par, preview, step-up-authentication, web-authn
     networks: 
       - tasks_api
+    profiles:
+        - prod
 
 volumes:
   task_api:
