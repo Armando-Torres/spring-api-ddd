@@ -9,9 +9,9 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/tasks_manager?useSSL=false
-    username: api
-    password: 4p1**
+    url: jdbc:mariadb://${DB_SPRING_DDD_HOST}:3306/tasks_manager?useSSL=false
+    username: ${DB_SPRING_DDD_USERNAME}
+    password: ${DB_SPRING_DDD_PWD}
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     show-sql: true
