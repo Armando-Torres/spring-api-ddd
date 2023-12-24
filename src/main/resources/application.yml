@@ -5,7 +5,7 @@ server:
     
 logging:
   level:
-    '[org.springframework.web]': debug
+    '[org.springframework.web]': ${API_LOGGING_LEVEL:info}
 
 spring:
   datasource:
@@ -28,6 +28,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8082/realms/Spring-DDD
+          issuer-uri: http://${KEYCLOAK_URL:localhost}:${KEYCLOAK_PORT:8082}/realms/${KEYCLOAK_REALM:Spring-DDD}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
     
