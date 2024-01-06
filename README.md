@@ -12,7 +12,7 @@ This projects are an API to serve tasks across endpoints. You can Create, get or
 
 Only for the first time you must run the next command:
 ```shell
-docker compose -f compose.dev.yaml up -d
+docker compose --profile dev up -d
 ```
 
 It rise up a tomcat in port 80 and database exposed into 3306, both available in localhost.
@@ -22,24 +22,24 @@ It rise up a tomcat in port 80 and database exposed into 3306, both available in
 #### Start services
 You can init services typing:
 ```shell
-docker compose -f compose.dev.yaml start
+docker compose --profile dev start
 ```
 
 #### Stop services
 ```shell
-docker compose -f compose.dev.yaml stop
+docker compose --profile dev stop
 ```
 
 ## Container logs
 
 #### Tomcat log
 ```shell
-docker compose -d compose.dev.yaml logs -f api
+docker compose --profile dev logs -f api
 ```
 
 #### MariaDB log
 ```shell
-docker compose -d compose.dev.yaml logs -f db
+docker compose --profile dev logs -f db
 ```
 
 ## Tomcat
