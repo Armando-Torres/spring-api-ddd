@@ -1,5 +1,5 @@
 services:
-  jdk:
+  api:
     image: openjdk:17-slim-buster
     working_dir: /home/app/spring
     entrypoint: "./mvnw spring-boot:run"
