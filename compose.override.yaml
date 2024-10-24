@@ -3,6 +3,10 @@ services:
     image: openjdk:17-slim-buster
     working_dir: /home/app/spring
     entrypoint: "tail -f /dev/null"
+    environment:
+      DB_SPRING_DDD_HOST: localhost
+      DB_SPRING_DDD_USERNAME: api
+      DB_SPRING_DDD_PWD: api
     volumes:
       - ${PWD}:/home/app/spring
     networks:
