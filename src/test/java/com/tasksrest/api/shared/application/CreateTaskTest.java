@@ -74,8 +74,8 @@ public class CreateTaskTest {
         when(request.getTaskHolderId()).thenReturn(Integer.valueOf(1));
 
         Task task = new Task(request.getName(), request.getDesc(), request.getStatus(), request.getOrder());
-        when(task.getTaskHolder()).thenReturn(taskHolder);
-        when(task.getId()).thenReturn(Integer.valueOf(1));
+        task.setTaskHolder(taskHolder);
+        task.setId(1);
 
         when(taskHolderRepository.findById(anyInt())).thenReturn(Optional.of(taskHolder));
         when(taskRepository.save(any(Task.class))).thenReturn(task);
