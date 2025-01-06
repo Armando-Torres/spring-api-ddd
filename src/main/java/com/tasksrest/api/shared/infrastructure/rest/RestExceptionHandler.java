@@ -50,7 +50,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
     
 
     private void logException(Integer code, String cause) {
-        this.loggerInstance.warn(String.format("%d %s", code, cause));
+        this.loggerInstance.warn("{0} {1}", code, cause);
     }
 
     private ResponseEntity<Object> resposeException(HttpStatus status, String cause) {
