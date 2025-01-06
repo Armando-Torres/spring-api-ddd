@@ -2,7 +2,6 @@ package com.tasksrest.api.kanban.application;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.tasksrest.api.kanban.application.service.ColumnResponse;
 import com.tasksrest.api.kanban.domain.Column;
@@ -31,6 +30,6 @@ public class GetColumns {
         
         return columns.stream()
             .map(element -> { return new ColumnResponse(element); })
-            .collect(Collectors.toList());
+            .toList();
     }
 }
