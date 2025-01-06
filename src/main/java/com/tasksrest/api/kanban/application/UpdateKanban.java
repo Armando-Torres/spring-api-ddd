@@ -11,7 +11,7 @@ import com.tasksrest.api.kanban.domain.exception.NotFoundKanbanException;
 public class UpdateKanban {
     private final KanbanRepository kanbanRepository;
 
-    private static final String notFound = "Kanban not found";
+    private static final String NOT_FOUND = "Kanban not found";
 
     public UpdateKanban(KanbanRepository kanbanRepository) {
         this.kanbanRepository = kanbanRepository;
@@ -21,7 +21,7 @@ public class UpdateKanban {
         Optional<Kanban> kanban = this.kanbanRepository.findById(kanbanId);
 
         if (!kanban.isPresent()) {
-            throw new NotFoundKanbanException(notFound);
+            throw new NotFoundKanbanException(NOT_FOUND);
         }
 
         Kanban persistKanban = null;

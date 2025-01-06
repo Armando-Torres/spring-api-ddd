@@ -9,7 +9,7 @@ import com.tasksrest.api.kanban.domain.exception.NotFoundColumnException;
 public class DeleteColumn {
     private final ColumnRepository kanbanColumnRepository;
 
-    private static final String notFound = "Column not found";
+    private static final String NOT_FOUND = "Column not found";
 
     public DeleteColumn(ColumnRepository kanbanColumnRepository) {
         this.kanbanColumnRepository = kanbanColumnRepository;
@@ -19,7 +19,7 @@ public class DeleteColumn {
         Optional<Column> column = this.kanbanColumnRepository.findById(columnId);
 
         if (!column.isPresent()) {
-            throw new NotFoundColumnException(notFound);
+            throw new NotFoundColumnException(NOT_FOUND);
         }
 
         this.kanbanColumnRepository.delete(column.get());

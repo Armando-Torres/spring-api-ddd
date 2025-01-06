@@ -7,7 +7,7 @@ import com.tasksrest.api.shared.domain.exception.NotFoundTaskException;
 
 public class GetTask {
     private final TaskRepository repository;
-    private static final String notFound = "Task not found";
+    private static final String NOT_FOUND = "Task not found";
 
     public GetTask(TaskRepository repository) {
         this.repository = repository;
@@ -17,7 +17,7 @@ public class GetTask {
         Task task = this.repository.findById(id);
         
         if (task == null) {
-            throw new NotFoundTaskException(notFound);
+            throw new NotFoundTaskException(NOT_FOUND);
         }
         
         return new TaskResponse(task);
