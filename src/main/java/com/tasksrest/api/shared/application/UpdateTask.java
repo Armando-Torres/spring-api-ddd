@@ -61,8 +61,7 @@ public class UpdateTask {
                     return;
                 }
             } catch (NullPointerException e) {
-                continue;
-
+                
             } catch (IllegalAccessException e) {
                 throw new UpdateEmptyException(String.format("Updating task with id: %d with access issues", id));
             }

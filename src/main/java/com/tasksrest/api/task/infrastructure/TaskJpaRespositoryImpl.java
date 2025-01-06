@@ -25,16 +25,16 @@ import jakarta.persistence.criteria.Root;
 
 @Repository
 public class TaskJpaRespositoryImpl implements TaskRepository {
-    
-    @Autowired
     private EntityManager entityManager;
-
-    @Autowired
     private TaskJpaRepository jpaRepository;
-
-    @Autowired
     private TaskHolderRepository taskHolderRepository;
     
+    public TaskJpaRespositoryImpl (EntityManager entityManager, TaskJpaRepository jpaRepository, TaskHolderRepository taskHolderRepository) {
+        this.entityManager = entityManager;
+        this.jpaRepository = jpaRepository;
+        this.taskHolderRepository = taskHolderRepository;
+    }
+
     @Override
     public List<Task> findAllWithCriteria(TasksFilters filters) {
         TypedQuery<Task> query = this.createQueryFindAllWithCriteria(filters);

@@ -11,9 +11,9 @@ public abstract class TaskHolder {
 
     private Collection<Task> tasks;
 
-    public TaskHolder() {}
+    protected TaskHolder() {}
 
-    public TaskHolder(String name, Integer order) {
+    protected TaskHolder(String name, Integer order) {
         this.name = name;
         this.order = order;
     }

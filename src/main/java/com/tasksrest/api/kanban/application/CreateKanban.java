@@ -33,7 +33,7 @@ public class CreateKanban {
             response = new KanbanResponse(persistKanban);
 
             // If columns are set, call AddColumn use case instead of give responsability to persistence mapping
-            if (request.getColumns().size() > 0) {
+            if (!request.getColumns().isEmpty()) {
                 responseWithColumns =  new KanbanWithColumnsResponse(persistKanban);
 
                 AddColumn addColumnUseCase = new AddColumn(this.columnRepository, this.kanbanRepository);

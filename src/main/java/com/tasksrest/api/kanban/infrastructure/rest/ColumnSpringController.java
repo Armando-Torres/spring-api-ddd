@@ -2,7 +2,6 @@ package com.tasksrest.api.kanban.infrastructure.rest;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +27,13 @@ import com.tasksrest.api.kanban.domain.KanbanRepository;
 @RestController
 @RequestMapping(value = "/v1/kanban/{kanbanId}/column", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ColumnSpringController {
-    @Autowired
-    private KanbanRepository kanbanRepository;
-
-    @Autowired
-    private ColumnRepository columnRepository;
+    private final KanbanRepository kanbanRepository;
+    private final ColumnRepository columnRepository;
+    
+    public ColumnSpringController(KanbanRepository kanbanRepository, ColumnRepository columnRepository) {
+        this.kanbanRepository = kanbanRepository;
+        this.columnRepository = columnRepository;
+    }
 
     @PostMapping
     public ResponseEntity<List<ColumnResponse>> createKanbanColumn(@PathVariable("kanbanId") Integer kanbanId, @RequestBody List<ColumnRequest> requestBody){
@@ -71,12 +72,12 @@ public class ColumnSpringController {
     }
 
     @DeleteMapping("/{columnId}")
-    public ResponseEntity<?> deleteKanbanColumn(@PathVariable("columnId") Integer columnId) {
+    public ResponseEntity<Void> deleteKanbanColumn(@PathVariable("columnId") Integer columnId) {
         DeleteColumn useCase = new DeleteColumn(this.columnRepository);    
 
         useCase.invoke(columnId);
 
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
     }
 }
 
