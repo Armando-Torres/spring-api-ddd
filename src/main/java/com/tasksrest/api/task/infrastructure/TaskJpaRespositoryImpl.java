@@ -97,7 +97,7 @@ public class TaskJpaRespositoryImpl implements TaskRepository {
         try {
             task = this.jpaRepository.findById(id).get();
         } catch (NoSuchElementException e) {
-            new NotFoundTaskException(String.format("Task with id <%d> not found", id));
+            throw new NotFoundTaskException(String.format("Task with id <%d> not found", id));
         }
 
         return task;
