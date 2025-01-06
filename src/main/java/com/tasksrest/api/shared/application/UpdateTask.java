@@ -19,8 +19,6 @@ public class UpdateTask {
     }
 
     public TaskResponse invoke(Integer id, TaskRequest newTaskData){
-        this.checkIfAtLeastOneFieldAreForUpdate(id, newTaskData);
-
         Task task = this.repository.findById(id);
         Task persistTask = null;
 
@@ -43,30 +41,5 @@ public class UpdateTask {
         persistTask = this.repository.save(task);
 
         return new TaskResponse(persistTask);
-    }
-
-    private void checkIfAtLeastOneFieldAreForUpdate(Integer id, TaskRequest newTaskData) {
-
-        Class<?> taskClass = newTaskData.getClass();
-
-        Set<Field> properties = new HashSet<Field>(Arrays.asList(taskClass.getDeclaredFields()));
-
-        for (Field field : properties) {
-            field.setAccessible(true);            
-
-            try {
-                if (field.get(newTaskData) == null) {
-                    continue;
-                } else {
-                    return;
-                }
-            } catch (NullPointerException e) {
-                
-            } catch (IllegalAccessException e) {
-                throw new UpdateEmptyException(String.format("Updating task with id: %d with access issues", id));
-            }
-        }
-
-        throw new UpdateEmptyException(String.format("Trying to update task with id: %d with no body", id));
     }
 }
