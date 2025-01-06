@@ -49,7 +49,7 @@ public class RestKanbanExceptionHandler extends ResponseEntityExceptionHandler{
     }
 
     private void logException(Integer code, String cause) {
-        this.loggerInstance.warn("{0} {1}", code, cause);
+        this.loggerInstance.warn("{} {}", code, cause);
     }
 
     private ResponseEntity<Object> resposeException(HttpStatus status, String cause) {
