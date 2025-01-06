@@ -3,7 +3,6 @@ package com.tasksrest.api.task.rest;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +31,13 @@ import com.tasksrest.api.shared.domain.vo.TasksFilters;
 @RestController
 @RequestMapping(value = "/v1/task", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class TaskSpringController {    
-    @Autowired
     private TaskRepository taskRepository;
-
-    @Autowired
     private TaskHolderRepository taskHolderRepository;
+    
+    public TaskSpringController(TaskRepository taskRepository, TaskHolderRepository taskHolderRepository) {
+        this.taskRepository = taskRepository;
+        this.taskHolderRepository = taskHolderRepository;
+    }
 
     @PostMapping
     public ResponseEntity<TaskResponse> createSingleTask(@RequestBody CreateTaskRequest requestBody){

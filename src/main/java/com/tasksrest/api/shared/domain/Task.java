@@ -15,8 +15,6 @@ public final class Task {
 
     private Integer order;
 
-    //private User user;
-
     public Task() {
         // Default constructor is required for JPA
     }
@@ -26,7 +24,6 @@ public final class Task {
         this.description = description;
         this.status = new TaskStatus(status.toUpperCase());
         this.order = order;
-        //this.user = user;
     }
 
     public void setId(Integer id) {

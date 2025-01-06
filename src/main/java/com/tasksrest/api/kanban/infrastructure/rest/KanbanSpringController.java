@@ -2,7 +2,6 @@ package com.tasksrest.api.kanban.infrastructure.rest;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +26,13 @@ import com.tasksrest.api.kanban.domain.KanbanRepository;
 @RestController
 @RequestMapping(value = "/v1/kanban", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class KanbanSpringController {
-    @Autowired
     private KanbanRepository kanbanRepository;
-
-    @Autowired
     private ColumnRepository columnRepository;
+
+    public KanbanSpringController(KanbanRepository kanbanRepository, ColumnRepository columnRepository) {
+        this.kanbanRepository = kanbanRepository;
+        this.columnRepository = columnRepository;
+    }
 
     @PostMapping
     public ResponseEntity<KanbanResponse> createKanban(@RequestBody CreateKanbanRequest requestBody){

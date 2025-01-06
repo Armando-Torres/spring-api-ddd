@@ -10,7 +10,7 @@ import com.tasksrest.api.kanban.domain.exception.NotFoundColumnException;
 public class GetColumn {
     private final ColumnRepository kanbanColumnRepository;
 
-    private final String NOT_FOUND = "Column not found";
+    private static final String notFound = "Column not found";
 
     public GetColumn(ColumnRepository kanbanColumnRepository) {
         this.kanbanColumnRepository = kanbanColumnRepository;
@@ -20,7 +20,7 @@ public class GetColumn {
         Optional<Column> column = this.kanbanColumnRepository.findById(columnId);
 
         if (!column.isPresent()) {
-            throw new NotFoundColumnException(NOT_FOUND);
+            throw new NotFoundColumnException(notFound);
         }
         
         return new ColumnResponse(column.get());
