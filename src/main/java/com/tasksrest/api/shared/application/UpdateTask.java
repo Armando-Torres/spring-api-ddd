@@ -1,15 +1,9 @@
 package com.tasksrest.api.shared.application;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.tasksrest.api.shared.application.service.TaskRequest;
 import com.tasksrest.api.shared.application.service.TaskResponse;
 import com.tasksrest.api.shared.domain.Task;
 import com.tasksrest.api.shared.domain.TaskRepository;
-import com.tasksrest.api.shared.domain.exception.UpdateEmptyException;
 
 public class UpdateTask {
     private final TaskRepository repository;
